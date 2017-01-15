@@ -4,4 +4,5 @@
 
 [libs]
 flow-typed/npm
+flow-typed/global
 [options]
