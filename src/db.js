@@ -1,7 +1,7 @@
 //@flow
 'use strict';
 
-const Pool = require('pg').native.Pool;
+const Pool = require('pg').Pool;
 
 const config = {
   user: process.env.DB_USER || 'hkoscon',
