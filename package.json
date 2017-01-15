@@ -13,9 +13,12 @@
     "babel-cli": "^6.18.0",
     "babel-core": "^6.21.0",
     "babel-plugin-transform-flow-strip-types": "^6.21.0",
+    "debug": "^2.6.0",
     "dotenv": "^4.0.0",
+    "moment": "^2.17.1",
     "request": "^2.79.0",
-    "restify": "^4.3.0"
+    "restify": "^4.3.0",
+    "sse-nodejs": "^0.0.6"
   },
   "devDependencies": {
     "autoprefixer": "^6.6.1",
@@ -33,7 +36,6 @@
     "jasmine": "^2.5.3",
     "jasmine-core": "^2.5.2",
     "jasmine-spec-reporter": "^3.1.0",
-    "nunjucks": "^3.0.0",
     "webpack": "^1.14.0",
     "webpack-merge": "^2.4.0"
   }
