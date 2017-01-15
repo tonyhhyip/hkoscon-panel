@@ -10,8 +10,13 @@ module.exports = {
     new DedupePlugin(),
     new AggressiveMergingPlugin()
   ],
+  externals: {
+    react: 'React',
+    'react-dom': 'ReactDOM',
+    'react-router': 'ReactRouter'
+  },
   entry: {
-    app: ['./assets/app']
+    app: './assets/js/app'
   },
   output: {
     path: `${__dirname}/public/assets`,
@@ -29,7 +34,7 @@ module.exports = {
         loader: 'babel',
         query: {
           presets: ['es2015', 'react'],
-          plugin: ['transform-flow-strip-types']
+          plugins: ['transform-flow-strip-types']
         }
       }
     ]
