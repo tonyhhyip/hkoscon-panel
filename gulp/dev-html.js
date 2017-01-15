@@ -6,7 +6,7 @@ const jinja = require('gulp-nunjucks');
 const rename = require('gulp-rename');
 
 gulp.task('dev:html', () => {
-  return gulp.src('./assets/html/page/**/*.jinja')
+  return gulp.src('./assets/html/**/*.jinja')
     .on('error', log)
     .pipe(jinja.compile({}))
     .pipe(rename({

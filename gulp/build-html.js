@@ -7,7 +7,7 @@ const rename = require('gulp-rename');
 const htmlmin = require('gulp-htmlmin');
 
 gulp.task('build:html', () => {
-  return gulp.src('./assets/html/page/**/*.jinja')
+  return gulp.src('./assets/html/**/*.jinja')
     .on('error', log)
     .pipe(jinja.compile({}))
     .pipe(rename({
