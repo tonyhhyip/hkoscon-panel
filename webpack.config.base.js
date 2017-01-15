@@ -25,10 +25,10 @@ module.exports = {
   module: {
     loaders: [
       {
-        test: /\.js$/,
+        test: /\.jsx?$/,
         loader: 'babel',
         query: {
-          presets: ['es2015'],
+          presets: ['es2015', 'react'],
           plugin: ['transform-flow-strip-types']
         }
       }
