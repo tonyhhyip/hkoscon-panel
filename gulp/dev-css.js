@@ -10,5 +10,5 @@ gulp.task('dev:style', () => {
     .on('error', log)
     .pipe(sass())
     .pipe(postcss)
-    .pipe(gulp.dest('./public'));
+    .pipe(gulp.dest('./public/assets'));
 });

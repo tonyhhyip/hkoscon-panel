@@ -12,5 +12,5 @@ gulp.task('build:style', () => {
     .pipe(sass())
     .pipe(postcss)
     .pipe(cleanCss())
-    .pipe(gulp.dest('./public'));
+    .pipe(gulp.dest('./public/assets'));
 });

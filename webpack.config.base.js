@@ -13,6 +13,11 @@ module.exports = {
   entry: {
     app: ['./assets/app']
   },
+  output: {
+    path: `${__dirname}/public/assets`,
+    filename: '[name].js',
+    publicPath: '/assets/'
+  },
   resolve: {
     extensions: ['', '.js'],
     fallback: ['node_modules']
