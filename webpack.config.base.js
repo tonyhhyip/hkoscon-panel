@@ -10,11 +10,6 @@ module.exports = {
     new DedupePlugin(),
     new AggressiveMergingPlugin()
   ],
-  externals: {
-    react: 'React',
-    'react-dom': 'ReactDOM',
-    'react-router': 'ReactRouter'
-  },
   entry: {
     app: './assets/js/app'
   },
