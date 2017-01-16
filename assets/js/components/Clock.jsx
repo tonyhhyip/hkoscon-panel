@@ -20,7 +20,7 @@ export default class Clock extends React.Component {
   }
 
   componentDidMount() {
-    setInterval(function () {
+    setInterval(() => {
       this.setState({
         time: moment().format('hh:mm:ss')
       });
