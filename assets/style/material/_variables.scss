@@ -2,3 +2,10 @@
 $shadow-key-umbra-opacity:      0.2 !default;
 $shadow-key-penumbra-opacity:   0.14 !default;
 $shadow-ambient-shadow-opacity: 0.12 !default;
+
+// Color
+$theme-blue: #294454;
+$theme-yellow: #F3CB02;
+
+$primary-color: color('indigo', 'base');
+$secondary-color: color('pink', 'base');
