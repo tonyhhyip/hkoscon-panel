@@ -11,31 +11,23 @@ type Props = {
   offset?: string
 }
 
-export default function ({
-  children,
-  className,
-  s,
-  m,
-  l,
-  offset,
-  ...other
-}: Props) {
-  let sizes = { s, m, l };
+export default function (props: Props) {
+  let sizes = { s: props.s, m: props.m, l: props.l };
   let classes = { col: true };
   ['s', 'm', 'l'].forEach(size => {
     if (sizes[size])
       classes[size + sizes[size]] = sizes[size];
   });
 
-  if (offset) {
-    offset.split(' ').forEach(off => {
+  if (props.offset) {
+    props.offset.split(' ').forEach(off => {
       classes['offset-' + off] = true;
     });
   }
 
   return (
-    <div {...other} className={classNames(classes, className)}>
-      {children}
+    <div {...props} className={classNames(classes, props.className)}>
+      {props.children}
     </div>
   );
 };
