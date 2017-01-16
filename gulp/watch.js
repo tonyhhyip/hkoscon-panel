@@ -4,7 +4,7 @@ const gulp = require('gulp');
 
 gulp.task('watch:css', () => {
   return gulp.watch([
-    'assets/css/**/*.scss'
+    'assets/style/**/*.scss'
   ], ['dev:style']);
 });
 
