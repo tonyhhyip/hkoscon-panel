@@ -1,0 +1,19 @@
+apps:
+  - script: bin/app.js
+    name: hkoscon-backend
+    interpreter_args: "--harmony"
+    watch:
+      - src
+      - bin
+    env_dev:
+      NODE_ENV: development
+      DEBUG: "*"
+    env_production:
+      NODE_ENV: production
+
+  - script: node_modules/.bin/gulp
+    name: gulp-build
+    interpreter_args: "--harmony"
+    args: "dev"
+    watch:
+      - gulp
