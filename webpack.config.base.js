@@ -24,7 +24,7 @@ module.exports = {
     publicPath: '/assets/'
   },
   resolve: {
-    extensions: ['', '.js'],
+    extensions: ['', '.js', '.jsx'],
     fallback: ['node_modules']
   },
   module: {
