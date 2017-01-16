@@ -1,7 +1,7 @@
-//@flow
 'use strict';
 
-const Pool = require('pg').Pool;
+const pg = require('pg');
+const debug = require('debug')('db');
 
 const config = {
   user: process.env.DB_USER || 'hkoscon',
@@ -11,14 +11,44 @@ const config = {
   max: 10
 };
 
-const pool = new Pool(config);
+const pool = new pg.Pool(config);
 
-module.exports = function getConnection(): Promise<Object> {
+module.exports = function getConnection() {
   return new Promise(function (resolve, reject) {
     pool.connect(function (err, client, done) {
       if (err) {
+        debug('Error: %s', err);
         reject(err);
+      } else if (!client) {
+        reject(new Error('No Client exists'));
       } else {
+        const rollback = function () {
+          debug('Rollback');
+          client.query('ROLLBACK', [], (e) => {
+            if (e) debug('Rollback Error: %s', e);
+            done(e);
+          });
+        };
+        const commit = function () {
+          debug('Commit');
+          client.query('COMMIT', (e) => {
+            if (e) debug('Commit Error: %s', e);
+            done(e);
+          });
+        };
+        client.startTransaction = function () {
+          return new Promise((resolve, reject) => {
+            client.query('BEGIN', [], (e) => {
+              if (e) {
+                debug('Fail to start transaction: %s', e);
+                reject(e);
+              } else {
+                debug('Start Transaction');
+                resolve({commit, rollback});
+              }
+            })
+          });
+        };
         resolve({client, done});
       }
     });
