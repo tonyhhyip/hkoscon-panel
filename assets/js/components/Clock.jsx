@@ -7,7 +7,7 @@ type State = {
 export default class Clock extends React.Component {
 
   state: State;
-
+  interval: number;
   constructor(props: Object) {
     super(props);
     this.state = {
@@ -20,10 +20,14 @@ export default class Clock extends React.Component {
   }
 
   componentDidMount() {
-    setInterval(() => {
+    this.interval = setInterval(() => {
       this.setState({
         time: moment().format('hh:mm:ss')
       });
     }, 500);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.interval);
   }
 }

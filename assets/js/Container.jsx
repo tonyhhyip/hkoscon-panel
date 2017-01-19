@@ -3,14 +3,20 @@ import React from 'react';
 import Navbar from './components/Navbar';
 
 type Props = {
-  children: React.Element<*>
+  children: React.Element<*>,
+  route: {
+    data: Object
+  }
 }
 
 export default function Container(props: Props) {
+  const children = React.Children.map(props.children, function (child) {
+    return React.cloneElement(child, {data: props.route.data});
+  });
   return (
     <div>
       <header><Navbar/></header>
-      <main>{props.children}</main>
+      <main>{children}</main>
     </div>
   );
 };

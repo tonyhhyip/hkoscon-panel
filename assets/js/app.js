@@ -3,4 +3,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import AppRouter from './Router';
-ReactDOM.render(<AppRouter/>, document.getElementById('react-root'));
+
+fetch('/data/attendee.json')
+  .then(function (response) {
+    return response.json();
+  })
+  .then(function (data) {
+    ReactDOM.render(<AppRouter data={data} />, document.getElementById('react-root'));
+  });
+
