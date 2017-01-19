@@ -14,4 +14,10 @@ gulp.task('watch:html', () => {
   ], ['dev:html']);
 });
 
-gulp.task('watch', ['watch:html', 'watch:css']);
+gulp.task('watch:data', () => {
+  return gulp.watch([
+    'assets/data/**/*.json'
+  ], ['data'])
+});
+
+gulp.task('watch', ['watch:html', 'watch:css', 'watch:data']);
