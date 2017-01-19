@@ -1,0 +1,1 @@
+declare var fetch: (url: string, option?: Object) => Promise<*>;
