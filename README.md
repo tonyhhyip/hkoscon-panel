@@ -6,6 +6,7 @@ Requirement:
 - Redis
 
 Setup (all in one server):
+
 1. Install all required software
 2. Run `npm install -g pm2` to install pm2
 3. run `yarn install` to install all package
