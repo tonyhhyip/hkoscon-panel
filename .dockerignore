@@ -1,6 +1,10 @@
 /.idea
 node_modules
 flow-typed
-assets
 db
 webpack.json
+public
+gulp
+gulpfile.js
+.yarnclean
+*.scss
