@@ -7,7 +7,7 @@ const {iterListeners} = require('../sse');
 
 module.exports = function (req, res, id) {
   const client = redis.createClient(redis.config);
-  const date = moment().format('YYYY-MM-DD');
+  const date = moment().format('YYYYMMDD');
   if (id in attendees) {
     res.status(200);
     const {type, ticket, name} = attendees[id];
