@@ -1,5 +1,6 @@
 //@flow
 'use strict';
+import './notice';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import AppRouter from './Router';
