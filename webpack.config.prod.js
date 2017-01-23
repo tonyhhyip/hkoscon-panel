@@ -6,15 +6,11 @@ const merge = require('webpack-merge');
 const config = require('./webpack.config.base');
 
 module.exports = merge.smart({
-  plugin: [
-    new UglifyPlugin({
-      compress: true
-    }),
+  plugins: [
+    new UglifyPlugin({minimize: true}),
     new DefinePlugin({
-      'process.env': {
-        NODE_ENV: 'production'
-      }
-    })
+      'process.env.NODE_ENV': JSON.stringify('production'),
+    }),
   ],
   devtool: 'source-map'
 }, config);

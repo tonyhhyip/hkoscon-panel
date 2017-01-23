@@ -37,7 +37,18 @@ module.exports = {
         test: /\.jsx?$/,
         loader: 'babel',
         query: {
-          presets: ['es2015', 'react'],
+          presets: [
+            'react',
+            [
+              'env',
+              {
+                targets: {
+                  chrom: 55,
+                  firefox: 50
+                }
+              }
+            ]
+          ],
           plugins: ['transform-flow-strip-types']
         }
       }

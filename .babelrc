@@ -1,3 +1,10 @@
 {
-  "plugins": ["transform-flow-strip-types"]
+  "plugins": ["transform-flow-strip-types"],
+  "presets": [
+    ["env", {
+      "target": {
+        "node": true
+      }
+      }]
+  ]
 }
