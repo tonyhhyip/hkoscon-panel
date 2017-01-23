@@ -1,5 +1,6 @@
 import React from 'react';
 import QrCode from 'qrcode-reader';
+import toastr from 'toastr';
 import Container from './Container';
 import extract from '../barcode';
 
@@ -99,7 +100,6 @@ export default class CheckIn extends React.Component {
     const {attendee} = extract(result);
     fetch(`/api/checkin/${attendee}`, {method: 'POST'})
       .then((response) => {
-        /* global toastr */
         if (response.status === 200) {
           toastr.success('Success Check In');
         } else {

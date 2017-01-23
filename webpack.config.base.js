@@ -10,6 +10,15 @@ module.exports = {
     new DedupePlugin(),
     new AggressiveMergingPlugin()
   ],
+  externals: {
+    jquery: 'jQuery',
+    toastr: 'toastr',
+    react: 'React',
+    'react-dom': 'ReactDOM',
+    redux: 'Redux',
+    'react-redux': 'ReactRedux',
+    moment: 'moment'
+  },
   entry: {
     app: './assets/js/app'
   },

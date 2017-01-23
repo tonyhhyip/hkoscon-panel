@@ -1,5 +1,5 @@
 'use strict';
-/* global toastr */
+import toastr from 'toastr';
 const source = new EventSource('/sse');
 source.addEventListener('check-in', function (event) {
   const data = JSON.parse(event.data);

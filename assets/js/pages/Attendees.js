@@ -1,4 +1,5 @@
 import React from 'react';
+import $ from 'jquery';
 import Container from '../components/Container';
 import Row from '../components/Row';
 import VisibleAttendeeTable from '../attendees/containers/VisibleAttendeeTable';
