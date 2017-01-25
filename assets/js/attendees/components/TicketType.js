@@ -6,7 +6,7 @@ export default function TicketType(props) {
     speaker: 'Speaker',
     staff: 'Staff'
   };
-  const name = values[props.value.toLowerCase()] || 'Ticket Type';
+  const name = typeof props.value === 'string' ? values[props.value.toLowerCase()] || 'Ticket Type' : 'Ticket Type';
   return (
     <div>
       <a className="dropdown-button btn" href="#" data-activates='ticket-type'>
@@ -14,7 +14,7 @@ export default function TicketType(props) {
         <i className="material-icons">arrow_drop_down</i>
       </a>
       <ul id="ticket-type" className="dropdown-content">
-        <li><a href="#">Ticket Type</a></li>
+        <li><a href="#" onClick={props.handleClick('')}>Ticket Type</a></li>
         {Object.keys(values).map(key => {
           return (<li key={key}>
             <a href="#" onClick={props.handleClick(values[key])}>

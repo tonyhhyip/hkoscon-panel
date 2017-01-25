@@ -11,6 +11,10 @@ const getVisibleAttendee = (attendees = [], filter) => {
     result = result.filter(attendee => attendee.type === filter.type);
   }
 
+  if (filter.name) {
+    result = result.filter(attendee => filter.name.test(attendee.name));
+  }
+
   return result;
 };
 

@@ -30,3 +30,11 @@ export function filterTicketType(filter: string) {
     filter
   }
 }
+
+export const FILTER_NAME = 'FILTER_NAME';
+export function filterName(filter: string) {
+  return {
+    type: FILTER_NAME,
+    filter: new RegExp(filter, 'ig')
+  }
+}
