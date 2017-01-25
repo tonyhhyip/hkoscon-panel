@@ -30,7 +30,7 @@ export default class NameSearch extends React.Component {
 
   render() {
     return (
-      <InputField inline className="col s3">
+      <InputField inline className="col l3 s6">
         <input id="name-search" type="text" onChange={this.handleChange.bind(this)} value={this.state.value} />
         <label htmlFor="name-search">Name</label>
       </InputField>

@@ -1,7 +1,6 @@
 import {SET_VISIBLILITY_FILTER, FILTER_TICKET_TYPE, FILTER_NAME} from '../action';
 
 export default function (state = 'SHOW_ALL', action) {
-  console.log(action);
   switch (action.type) {
     case SET_VISIBLILITY_FILTER:
       return action.filter;

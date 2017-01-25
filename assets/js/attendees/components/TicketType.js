@@ -8,7 +8,7 @@ export default function TicketType(props) {
   };
   const name = typeof props.value === 'string' ? values[props.value.toLowerCase()] || 'Ticket Type' : 'Ticket Type';
   return (
-    <div>
+    <div className="col s6 l3">
       <a className="dropdown-button btn" href="#" data-activates='ticket-type'>
         {name}
         <i className="material-icons">arrow_drop_down</i>

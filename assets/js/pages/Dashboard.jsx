@@ -10,7 +10,7 @@ export default class Dashboard extends React.Component {
     return (
       <Container>
         <Row>
-          <Col s={3}>
+          <Col s={6} l={3}>
             <Card>
               <Content style={{fontSize: '2rem'}}>
                 Time: <Clock/>
