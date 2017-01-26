@@ -2,9 +2,9 @@ import React from 'react';
 import $ from 'jquery';
 import Container from '../components/Container';
 import Row from '../components/Row';
-import VisibleAttendeeTable from '../attendees/containers/VisibleAttendeeTable';
-import NameSearchFilter from '../attendees/containers/NameSeatchFilter';
-import TicketTypeFilter from '../attendees/containers/TicketTypeFilter';
+import VisibleAttendeeTable from '../redux/containers/VisibleAttendeeTable';
+import NameSearchFilter from '../redux/containers/NameSeatchFilter';
+import TicketTypeFilter from '../redux/containers/TicketTypeFilter';
 
 export default class Attendees extends React.Component {
   render() {
