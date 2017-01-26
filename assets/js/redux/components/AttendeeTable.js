@@ -15,7 +15,7 @@ export default function AttendeeTable(props) {
       </tr>
       </thead>
       <tbody>
-      {props.attendees && props.attendees.map(data => <Attendee key={data.id} {...data}/>)}
+      {props.attendees && props.attendees.map(data => <Attendee key={data.id} handleCheckIn={props.checkIn} {...data}/>)}
       </tbody>
     </table>
   );

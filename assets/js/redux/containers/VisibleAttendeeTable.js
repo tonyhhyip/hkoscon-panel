@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux'
+import toastr from 'toastr';
 import AttendeeTable from '../components/AttendeeTable';
+import {updateCheckIn} from '../action';
 
 const getVisibleAttendee = (attendees = [], filter) => {
   if (filter === 'SHOW_ALL') {
@@ -24,8 +26,25 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = () => {
-  return {}
+const mapDispatchToProps = (dispatch) => {
+  return {
+    checkIn: (id) => {
+      return function () {
+        fetch(`/api/checkin/${id}`, {method: 'POST'})
+          .then(function (response) {
+            if (response.status === 200) {
+              toastr.success('Check in Success');
+              dispatch(updateCheckIn(id, true));
+            }
+          })
+          .catch((e) => {
+            toastr.error('Fail to check in');
+            console.error(e);
+            dispatch(updateCheckIn(id, false));
+          })
+      };
+    }
+  }
 };
 
 const VisibleAttendeeTable = connect(
