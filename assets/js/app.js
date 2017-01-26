@@ -1,28 +1,16 @@
 //@flow
 'use strict';
-import './notice';
+import notice from './notice';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import AppRouter from './Router';
-import createStore from './attendees/store';
+import createStore from './redux/store';
+import fetchData from './fetch';
 
-fetch('/data/attendee.json')
-  .then(function (response) {
-    return response.json();
-  })
+Promise.all(fetchData)
+  .then((values) => createStore(values))
   .then(function (data) {
-    return Object.keys(data).map(function (id) {
-      const attendee = data[id];
-      return {
-        id,
-        name: attendee.name,
-        ticket: attendee.ticket,
-        type: attendee.type
-      }
-    });
-  })
-  .then(attendees => createStore({attendees}))
-  .then(function (attendees) {
-    ReactDOM.render(<AppRouter data={attendees} />, document.getElementById('react-root'));
+    ReactDOM.render(<AppRouter data={data} />, document.getElementById('react-root'));
+    notice(data);
   });
 
