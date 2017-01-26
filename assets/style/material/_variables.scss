@@ -7,5 +7,9 @@ $shadow-ambient-shadow-opacity: 0.12 !default;
 $theme-blue: #294454;
 $theme-yellow: #F3CB02;
 
-$primary-color: color('indigo', 'base');
-$secondary-color: color('pink', 'base');
+$primary-color: $theme-blue;
+$secondary-color: $theme-yellow;
+
+$navbar-font-color: $theme-yellow;
+$button-raised-color: $theme-yellow;
+$button-raised-background: $theme-blue;
