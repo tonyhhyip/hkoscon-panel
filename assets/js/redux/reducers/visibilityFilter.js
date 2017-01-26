@@ -1,9 +1,9 @@
-import {SET_VISIBLILITY_FILTER, FILTER_TICKET_TYPE, FILTER_NAME} from '../action';
+import {FILTER_TICKET_TYPE, FILTER_NAME, SHOW_ALL} from '../action';
 
 export default function (state = 'SHOW_ALL', action) {
   switch (action.type) {
-    case SET_VISIBLILITY_FILTER:
-      return action.filter;
+    case SHOW_ALL:
+      return SHOW_ALL;
     case FILTER_TICKET_TYPE:
       return state === 'SHOW_ALL' ? {type: action.filter} : Object.assign({}, state, {type: action.filter});
     case FILTER_NAME:

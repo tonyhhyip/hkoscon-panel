@@ -9,7 +9,6 @@ const mapStateToProps = () => {};
 const mapDispatchToProps = (dispatch: Function) => {
   return {
     handleChange: (value: string) => {
-      console.log(value);
       dispatch(filterName(value ? value : ''));
     }
   }
