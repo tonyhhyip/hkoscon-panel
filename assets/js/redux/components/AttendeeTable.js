@@ -11,6 +11,7 @@ export default function AttendeeTable(props) {
         <th>Name</th>
         <th>Ticket ID</th>
         <th>Ticket Type</th>
+        <th>Check In</th>
       </tr>
       </thead>
       <tbody>

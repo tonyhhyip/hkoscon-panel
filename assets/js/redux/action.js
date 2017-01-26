@@ -1,25 +1,9 @@
 //@flow
 'use strict';
-export const TOGGLE_CHECKIN = 'TOGGLE_CHECKIN';
-export function toggleCheckIn(attendee: string) {
-  return {
-    type: TOGGLE_CHECKIN,
-    attendee
-  }
-}
-
 export const SHOW_ALL = 'SHOW_ALL';
 export function showAll() {
   return {
     type: SHOW_ALL
-  };
-}
-
-export const SET_VISIBLILITY_FILTER = 'SET_VISIBILITY_FILTER';
-export function setVisibilityFilter(filter: string) {
-  return {
-    type: SET_VISIBLILITY_FILTER,
-    filter
   };
 }
 
@@ -36,5 +20,13 @@ export function filterName(filter: string) {
   return {
     type: FILTER_NAME,
     filter: new RegExp(filter, 'ig')
+  }
+}
+
+export const UPDATE_CHECK_IN = 'UPDATE_CHECK_IN';
+export function updateCheckIn(id: string, status: boolean) {
+  return {
+    type: UPDATE_CHECK_IN,
+    id, status
   }
 }

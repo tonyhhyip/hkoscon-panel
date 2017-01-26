@@ -14,6 +14,7 @@ export default function Attendee(props: Props) {
       <td>{props.name}</td>
       <td>{props.ticket}</td>
       <td>{props.type}</td>
+      <td><button type="button" className="btn" disabled={props.checkIn}>Check In</button></td>
     </tr>
   );
 }
