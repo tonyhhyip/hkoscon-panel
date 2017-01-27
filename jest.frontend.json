@@ -1,0 +1,7 @@
+{
+  "transform": {
+    "^.+\\.jsx?$": "./jest/transformer.frontend.js"
+  },
+  "testEnvironment": "jsdom",
+  "testRegex": "\\/assets\\/[\\.\\w\\/]+\\.spec\\.jsx?"
+}
