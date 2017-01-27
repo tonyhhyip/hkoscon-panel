@@ -4,6 +4,7 @@ import Row from '../components/Row';
 import Col from '../components/Col';
 import {Card, Content} from '../components/Card';
 import Clock from '../components/Clock';
+import InstanceAttendee from '../redux/containers/InstanceAttendee';
 
 export default class Dashboard extends React.Component {
   render() {
@@ -16,6 +17,9 @@ export default class Dashboard extends React.Component {
                 Time: <Clock/>
               </Content>
             </Card>
+          </Col>
+          <Col s={6} l={3}>
+            <InstanceAttendee/>
           </Col>
         </Row>
       </Container>
