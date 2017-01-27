@@ -11,7 +11,7 @@ export default class Attendees extends React.Component {
   render() {
     return (
       <Container>
-        <form>
+        <form onSubmit={e => e.preventDefault()}>
           <Row>
             <NameSearchFilter/>
             <TicketTypeFilter />
