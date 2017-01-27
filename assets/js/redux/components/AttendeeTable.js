@@ -1,6 +1,5 @@
 import React from 'react';
 import Attendee from './Attendee';
-import type attendee from './Attendee'
 
 export default function AttendeeTable(props) {
   return (
