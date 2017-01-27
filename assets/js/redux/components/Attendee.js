@@ -1,3 +1,4 @@
+//@flow
 import React from 'react';
 import CheckIn from './CheckIn';
 
@@ -6,17 +7,25 @@ type Props = {
   id: string,
   type: string,
   ticket: string,
+  checkIn: boolean,
   handleCheckIn: Function
 }
 
-export default function Attendee(props: Props) {
-  return (
-    <tr>
-      <td>{props.id}</td>
-      <td>{props.name}</td>
-      <td>{props.ticket}</td>
-      <td>{props.type}</td>
-      <td><CheckIn active={!props.checkIn} handleClick={props.handleCheckIn(props.id)} /></td>
-    </tr>
-  );
+export default class Attendee extends React.Component {
+  props: Props;
+  render() {
+    return (
+      <tr>
+        <td>{this.props.id}</td>
+        <td>{this.props.name}</td>
+        <td>{this.props.ticket}</td>
+        <td>{this.props.type}</td>
+        <td><CheckIn active={!this.props.checkIn} handleClick={this.props.handleCheckIn(this.props.id)}/></td>
+      </tr>
+    );
+  }
+
+  shouldComponentUpdate(nextProps: Props) {
+    return nextProps.checkIn !== this.props.checkIn;
+  }
 }
