@@ -7,9 +7,11 @@
     "start": "node bin/app.js",
     "build": "gulp build",
     "dev": "gulp dev",
-    "test": "flow check && yarn test-frontend",
-    "test-frontend": "jest --config jest.frontend.json",
-    "test-backend": "jest --config jest.backend.json"
+    "test": "flow check && yarn test:frontend && yarn test:backend",
+    "test:frontend": "jest --config jest.frontend.json",
+    "test:backend": "jest --config jest.backend.json",
+    "test:frontend:watch": "yarn test:frontend --watch",
+    "test:backend:watch": "yarn test:backend --watch"
   },
   "dependencies": {
     "babel-cli": "^6.18.0",
@@ -29,7 +31,6 @@
     "autoprefixer": "^6.6.1",
     "babel-jest": "^18.0.0",
     "babel-loader": "^6.2.10",
-    "babel-preset-es2015": "^6.18.0",
     "babel-preset-modern-browsers": "^8.0.0",
     "babel-preset-react": "^6.16.0",
     "chart.js": "^1.1.1",
