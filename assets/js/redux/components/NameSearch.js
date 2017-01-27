@@ -23,7 +23,6 @@ export default class NameSearch extends React.Component {
 
   handleChange(e: Object) {
     const {value} = e.target;
-    console.log(value);
     this.setState({value});
     this.props.handleChange(value);
   }
@@ -35,5 +34,9 @@ export default class NameSearch extends React.Component {
         <label htmlFor="name-search">Name</label>
       </InputField>
     );
+  }
+
+  shouldComponentUpdate(nextProps: any, nextState: State) {
+    return nextState.value !== this.state.value;
   }
 };
