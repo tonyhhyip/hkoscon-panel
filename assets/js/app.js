@@ -11,9 +11,8 @@ import fetchData from './fetch';
 runtime.register({
   scope: `https://${location.host}/`
 })
-  .catch(e => console.log(e));
-
-Promise.all(fetchData)
+  .catch(e => console.log(e))
+  .then(() => Promise.all(fetchData))
   .then((values) => createStore(values))
   .then(function (data) {
     ReactDOM.render(<AppRouter data={data} />, document.getElementById('react-root'));

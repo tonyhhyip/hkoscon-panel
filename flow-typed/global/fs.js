@@ -6,4 +6,5 @@ declare module 'fs' {
   };
   declare var createReadStream: fs.createReadStream;
   declare var access: fs.access;
+  declare var readFile: fs.readFile;
 }
