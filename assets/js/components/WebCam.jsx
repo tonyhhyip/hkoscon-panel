@@ -17,7 +17,7 @@ export default class CheckIn extends React.Component {
     this.state = {
       timeout: null,
       stream: null,
-      capture: true
+      capture: false
     };
   }
   render() {
@@ -32,10 +32,6 @@ export default class CheckIn extends React.Component {
         </Container>
       </Container>
     )
-  }
-
-  componentDidMount() {
-    this.startCapture();
   }
 
   componentWillUnmount() {
