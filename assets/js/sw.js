@@ -32,10 +32,19 @@ self.addEventListener('activate', (event) => {
 });
 
 self.addEventListener('fetch', (event: FetchEvent) => {
+  let found = false;
+  for (let file of files) {
+    if (event.request.url.endsWith(file) && event.request.url.startsWith('https://') && event.request.method === 'GET') {
+      found = true;
+      break;
+    }
+  }
+  if (!found) return;
   event.respondWith(caches.open(CACHE_NAME).then((cache: Cache) => {
     return cache.match(event.request).then((response: FetchResponse) => {
       return response || fetch(event.request).then((response: FetchResponse) => {
           cache.put(event.request, response.clone());
+          console.info(`Cache Request: ${event.request.url}`);
           return response;
         });
     })
