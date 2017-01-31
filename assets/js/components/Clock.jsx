@@ -22,7 +22,7 @@ export default class Clock extends React.Component {
   componentDidMount() {
     this.interval = setInterval(() => {
       this.setState({
-        time: moment().format('hh:mm:ss')
+        time: moment().format('HH:mm:ss')
       });
     }, 500);
   }
