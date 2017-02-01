@@ -1,0 +1,12 @@
+{
+  "name": "HKOSCon Dashboard",
+  "short_name": "HKOSCon Dashboard",
+  "start_url": "/dashbaord",
+  "display": "standalone",
+  "icons": [{
+    "src": "https://hkoscon.org/logo.png",
+    "type": "images/png"
+  }],
+  "background_color": "#294454",
+  "theme_color": "#F3CB02"
+}
