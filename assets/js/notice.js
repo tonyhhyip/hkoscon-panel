@@ -43,11 +43,12 @@ export default function (store) {
         throw new Error(response);
       }
     })
-    .then(() => messaging.onMessage(payload => {
+    .then(() => navigator.serviceWorker.getRegistration())
+    .then((registration) => messaging.onMessage(payload => {
       console.log(payload);
       const {data} = payload;
       const title = `${data.type} ${data.name} Check In`;
-      return new Notification(title, {
+      return registration.showNotification(title, {
         icon: 'https://hkoscon.org/logo.png'
       });
     }))
