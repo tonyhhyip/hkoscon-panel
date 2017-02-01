@@ -1,14 +1,16 @@
 'use strict';
 
-const OccurenceOrderPlugin = require('webpack/lib/optimize/OccurrenceOrderPlugin');
-const DedupePlugin = require('webpack/lib/optimize/DedupePlugin');
+const DefinePlugin = require('webpack/lib/DefinePlugin');
 const AggressiveMergingPlugin = require('webpack/lib/optimize/AggressiveMergingPlugin');
 const ServiceWorkerWebpackPlugin = require('serviceworker-webpack-plugin');
 
 module.exports = {
   plugins: [
-    new OccurenceOrderPlugin(),
-    new DedupePlugin(),
+    new DefinePlugin({
+      'process.env.FIREBASE_API_KEY': JSON.stringify(process.env.FIREBASE_API_KEY),
+      'process.env.FIREBASE_PROJECT_ID': JSON.stringify(process.env.FIREBASE_PROJECT_ID),
+      'process.env.FIREBASE_MESSAGE_SENDER_ID': JSON.stringify(process.env.FIREBASE_MESSAGE_SENDER_ID)
+    }),
     new AggressiveMergingPlugin(),
     new ServiceWorkerWebpackPlugin({
       entry: `${__dirname}/assets/js/sw.js`,
@@ -38,14 +40,13 @@ module.exports = {
     publicPath: '/assets/'
   },
   resolve: {
-    extensions: ['', '.js', '.jsx'],
-    fallback: ['node_modules']
+    extensions: ['.js', '.jsx']
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.jsx?$/,
-        loader: 'babel',
+        loader: 'babel-loader',
         query: {
           babelrc: false,
           presets: [
