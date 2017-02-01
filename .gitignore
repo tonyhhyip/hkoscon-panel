@@ -4,3 +4,4 @@ node_modules
 .env
 .yarnclean
 webpack.json
+.htpasswd
