@@ -1,12 +1,54 @@
+//@flow
 'use strict';
 import toastr from 'toastr';
-import {updateCheckIn} from './redux/action';
+import firebase from 'firebase/app';
+import 'firebase/messaging';
 
 export default function (store) {
-  const source = new EventSource('/sse');
-  source.addEventListener('check-in', function (event) {
-    const data = JSON.parse(event.data);
-    toastr.info(`A ${data.type} ${data.name} has check-in`);
-    store.dispatch(updateCheckIn(data.id, true));
-  });
+  const PROJECT_ID = process.env.FIREBASE_PROJECT_ID;
+  const config = {
+    apiKey: process.env.FIREBASE_API_KEY,
+    authDomain: `${PROJECT_ID}.firebaseapp.com`,
+    databaseURL: `https://${PROJECT_ID}.firebaseio.com`,
+    storageBucket: `${PROJECT_ID}.appspot.com`,
+    messagingSenderId: process.env.FIREBASE_MESSAGE_SENDER_ID
+  };
+  firebase.initializeApp(config);
+
+  const messaging = firebase.messaging();
+
+  messaging.requestPermission()
+    .then(() => console.log('Grant Permission'))
+    .then(() => navigator.serviceWorker.getRegistration())
+    .then(registration => messaging.useServiceWorker(registration))
+    .then(() => messaging.getToken())
+    .then((token) => {
+      console.log('Finish Get Token');
+      return token;
+    })
+    .then((token) => {
+      const url = `https://iid.googleapis.com/iid/v1/${token}/rel/topics/check-in`;
+      return fetch(url, {
+        method: 'POST',
+        headers: {
+          Authorization: `key=${process.env.FIREBAE_MESSAGE_SERVER_KEY}`,
+          'Content-Type': 'application/json'
+        }
+      });
+    })
+    .then((response : FetchResponse) => {
+      if (response.status === 200) {
+        return console.log('Finish subscribe');
+      } else {
+        throw new Error(response);
+      }
+    })
+    .then(() => messaging.onMessage(payload => console.log(payload)))
+    .then(() => console.log('Waiting for notice'))
+    .catch((e) => {
+      console.log(e);
+      toastr.error('Fail to active push notice');
+    });
+
+  return store;
 }

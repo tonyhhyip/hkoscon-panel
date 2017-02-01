@@ -1,6 +1,17 @@
 //@flow
 'use strict';
 
+import firebase from 'firebase/app';
+import 'firebase/messaging';
+
+firebase.initializeApp({
+  messagingSenderId: '821928017692'
+});
+
+const messaging = firebase.messaging();
+
+messaging.setBackgroundMessageHandler(payload => console.log(payload));
+
 const {assets} = global.serviceWorkerOption;
 const files = [
   '/assets/app.css',

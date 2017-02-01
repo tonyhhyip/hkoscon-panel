@@ -17,6 +17,4 @@ runtime.register({
   .then(function (data) {
     ReactDOM.render(<AppRouter data={data} />, document.getElementById('react-root'));
     notice(data);
-    return data;
   });
-
