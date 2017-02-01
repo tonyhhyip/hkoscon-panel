@@ -4,7 +4,6 @@ const moment = require('moment');
 const debug = require('debug')('handle:checkin');
 const redis = require('../redis');
 const attendees = require('../attendees');
-const {iterListeners} = require('../sse');
 
 module.exports = function (req, res, id) {
   const client = redis.createClient(redis.config);
