@@ -1,5 +1,3 @@
-//@flow
-'use strict';
 import toastr from 'toastr';
 import firebase from 'firebase/app';
 import 'firebase/messaging';

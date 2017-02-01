@@ -4,21 +4,6 @@
 import firebase from 'firebase/app';
 import 'firebase/messaging';
 
-firebase.initializeApp({
-  messagingSenderId: '821928017692'
-});
-
-const messaging = firebase.messaging();
-
-messaging.setBackgroundMessageHandler(payload => {
-  console.log(payload);
-  const {data} = payload;
-  const title = `${data.type} ${data.name} Check In`;
-  return self.registration.showNotification(title, {
-    icon: 'https://hkoscon.org/logo.png'
-  });
-});
-
 const {assets} = global.serviceWorkerOption;
 const files = [
   '/assets/app.css',
@@ -67,5 +52,35 @@ self.addEventListener('fetch', (event: FetchEvent) => {
           return response;
         });
     })
+  }));
+});
+
+firebase.initializeApp({
+  messagingSenderId: '821928017692'
+});
+
+const messaging = firebase.messaging();
+
+messaging.setBackgroundMessageHandler(payload => {
+  console.log(payload);
+  const {data} = payload;
+  const title = `${data.type} ${data.name} Check In`;
+  return self.registration.showNotification(title, {
+    icon: 'https://hkoscon.org/logo.png'
+  });
+});
+
+
+self.addEventListener('notificationclick', (event: NotificationEvent) => {
+  event.notification.close();
+  event.waitUntil(self.clients.matchAll({
+    type: "window"
+  }).then(function(clients: Array<WindowClient>) {
+    for (let client of clients) {
+      if ('focus' in client) {
+        return client.focus();
+      }
+    }
+    return self.clients.openWindow('/dashboard/attendee');
   }));
 });
