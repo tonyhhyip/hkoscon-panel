@@ -4,10 +4,15 @@ import {NOTICE_CHECK_IN} from '../action';
 
 export default function checkInNotice(store: Store<Object, Object>) {
   return (next: Function) => (action: Object) => {
+    if (action.type !== NOTICE_CHECK_IN) {
+      return next(action);
+    }
+    const {attendees} = store.getState();
+    const notYetCheckIn = attendees.some(attendee => attendee.id === action.id && !attendee.checkIn);
     const result = next(action);
     const state = store.getState();
-    console.info('Check in notice');
-    if (action.type === NOTICE_CHECK_IN && state.localCheckIn.indexOf(action.id) === -1) {
+    if (notYetCheckIn && state.localCheckIn.indexOf(action.id) === -1) {
+      console.info('Check in notice');
       navigator.serviceWorker.getRegistration()
         .then((registration) => {
           const {data} = action;
