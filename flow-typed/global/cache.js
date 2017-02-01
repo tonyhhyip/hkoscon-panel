@@ -2,7 +2,7 @@
 
 declare type CacheStorage = {
   open(name: string): Promise<Cache>,
-  keys(): Promise<string>,
+  keys(): Promise<Array<string>>,
   delete(name: string): Promise<boolean>
 }
 
