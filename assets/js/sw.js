@@ -1,6 +1,6 @@
 //@flow
 
-import messaging from './messaging';
+import messaging from './notice/messaging';
 
 const {assets} = global.serviceWorkerOption;
 const files = [
