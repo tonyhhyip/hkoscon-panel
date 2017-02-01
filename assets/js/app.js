@@ -1,6 +1,6 @@
 //@flow
 'use strict';
-import notice from './notice';
+import notice from './listen';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import runtime from 'serviceworker-webpack-plugin/lib/runtime';

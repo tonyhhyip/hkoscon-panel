@@ -1,8 +1,6 @@
 //@flow
-'use strict';
 
-import firebase from 'firebase/app';
-import 'firebase/messaging';
+import messaging from './messaging';
 
 const {assets} = global.serviceWorkerOption;
 const files = [
@@ -55,12 +53,6 @@ self.addEventListener('fetch', (event: FetchEvent) => {
   }));
 });
 
-firebase.initializeApp({
-  messagingSenderId: '821928017692'
-});
-
-const messaging = firebase.messaging();
-
 messaging.setBackgroundMessageHandler(payload => {
   console.log(payload);
   const {data} = payload;
@@ -69,7 +61,6 @@ messaging.setBackgroundMessageHandler(payload => {
     icon: 'https://hkoscon.org/logo.png'
   });
 });
-
 
 self.addEventListener('notificationclick', (event: NotificationEvent) => {
   event.notification.close();

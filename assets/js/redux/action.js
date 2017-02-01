@@ -1,5 +1,4 @@
 //@flow
-'use strict';
 export const SHOW_ALL = 'SHOW_ALL';
 export function showAll() {
   return {
@@ -26,7 +25,14 @@ export function filterName(filter: string) {
 export const UPDATE_CHECK_IN = 'UPDATE_CHECK_IN';
 export function updateCheckIn(id: string, status: boolean) {
   return {
-    type: UPDATE_CHECK_IN,
-    id, status
+    id, status,
+    type: UPDATE_CHECK_IN
   }
+}
+
+export const NOTICE_CHECK_IN = 'NOTICE_CHECK_IN';
+export function noticeCheckIn(data: Object) {
+  return Object.assign({}, data, {
+    type: NOTICE_CHECK_IN
+  });
 }
