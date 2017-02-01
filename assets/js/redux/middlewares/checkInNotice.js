@@ -7,11 +7,11 @@ export default function checkInNotice(store: Store<Object, Object>) {
     const result = next(action);
     const state = store.getState();
     console.info('Check in notice');
-    if (action.type === NOTICE_CHECK_IN && state.localCheckIn.indexOf(action.data.id) === -1) {
+    if (action.type === NOTICE_CHECK_IN && state.localCheckIn.indexOf(action.id) === -1) {
       navigator.serviceWorker.getRegistration()
         .then((registration) => {
           const {data} = action;
-          const title = `${data.type} ${data.name} Check In`;
+          const title = `${data.type} attendee ${data.name} has just checked in`;
           return registration.showNotification(title, {
             icon: 'https://hkoscon.org/logo.png'
           });

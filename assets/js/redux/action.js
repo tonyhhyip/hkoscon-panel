@@ -32,7 +32,8 @@ export function updateCheckIn(id: string, status: boolean) {
 
 export const NOTICE_CHECK_IN = 'NOTICE_CHECK_IN';
 export function noticeCheckIn(data: Object) {
-  return Object.assign({}, data, {
+  return {
+    data, id: data.id,
     type: NOTICE_CHECK_IN
-  });
+  };
 }
