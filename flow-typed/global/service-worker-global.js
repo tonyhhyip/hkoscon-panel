@@ -8,6 +8,11 @@ declare class FetchEvent extends Event {
   request: FetchRequest;
 }
 
-declare interface ServiceWorkerGlobalScope {
+declare type ServiceWorkerRegistration = {
+  showNotification(title: string, options?: NotificationOption): Promise<NotificationEvent>;
+}
+
+declare type ServiceWorkerGlobalScope = {
   oninstall: (event: AppInstallEvent) => void;
+  registration: ServiceWorkerRegistration;
 }

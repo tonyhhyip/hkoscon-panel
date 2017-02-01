@@ -43,7 +43,14 @@ export default function (store) {
         throw new Error(response);
       }
     })
-    .then(() => messaging.onMessage(payload => console.log(payload)))
+    .then(() => messaging.onMessage(payload => {
+      console.log(payload);
+      const {data} = payload;
+      const title = `${data.type} ${data.name} Check In`;
+      return new Notification(title, {
+        icon: 'https://hkoscon.org/logo.png'
+      });
+    }))
     .then(() => console.log('Waiting for notice'))
     .catch((e) => {
       console.log(e);

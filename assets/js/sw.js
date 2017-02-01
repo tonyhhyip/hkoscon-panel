@@ -10,7 +10,14 @@ firebase.initializeApp({
 
 const messaging = firebase.messaging();
 
-messaging.setBackgroundMessageHandler(payload => console.log(payload));
+messaging.setBackgroundMessageHandler(payload => {
+  console.log(payload);
+  const {data} = payload;
+  const title = `${data.type} ${data.name} Check In`;
+  return self.registration.showNotification(title, {
+    icon: 'https://hkoscon.org/logo.png'
+  });
+});
 
 const {assets} = global.serviceWorkerOption;
 const files = [
