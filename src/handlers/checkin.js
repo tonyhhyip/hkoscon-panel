@@ -17,9 +17,6 @@ module.exports = function (req, res, id) {
       })
       .then(function () {
         sendNotice({id, type, ticket, name});
-        iterListeners(function (listener) {
-          listener.sendEvent('check-in', {id, type, ticket, name});
-        });
       });
   } else {
     res.status(404);
