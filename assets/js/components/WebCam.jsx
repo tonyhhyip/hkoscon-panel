@@ -2,7 +2,7 @@ import React from 'react';
 import QrCode from 'qrcode-reader';
 import toastr from 'toastr';
 import Container from './Container';
-import extract from '../barcode';
+import extract from '../feature/barcode';
 
 type State = {
   timeout: number | null,
