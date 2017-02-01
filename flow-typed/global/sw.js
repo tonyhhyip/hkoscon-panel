@@ -15,4 +15,5 @@ declare type ServiceWorkerRegistration = {
 declare type ServiceWorkerGlobalScope = {
   oninstall: (event: AppInstallEvent) => void;
   registration: ServiceWorkerRegistration;
+  clients: Clients;
 }

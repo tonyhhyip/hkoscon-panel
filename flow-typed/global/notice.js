@@ -15,7 +15,8 @@ type NotificationOption = {
 }
 
 declare class Notification {
-  constructor(title: string, options?: NotificationOption);
+  constructor(title: string, options?: NotificationOption): Notification;
+  close(): void;
 }
 
 declare class NotificationEvent extends ExtendableEvent {
