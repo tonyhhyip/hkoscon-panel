@@ -14,7 +14,7 @@ export default function (store: Store<Object, Object>) {
     .then(listen(store, messaging))
     .then(() => toastr.success('Start listen for Push Notice'))
     .catch((e) => {
-      console.log(e);
+      console.trace(e);
       toastr.error('Fail to active push notice');
     });
 

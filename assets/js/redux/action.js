@@ -1,4 +1,6 @@
 //@flow
+import toastr from 'toastr';
+
 export const SHOW_ALL = 'SHOW_ALL';
 export function showAll() {
   return {
@@ -39,11 +41,20 @@ export function noticeCheckIn(data: Object) {
 }
 
 export const IMPORT_ATTENDEE = 'IMPORT_ATTENDEE';
-export function importAttendee(attendees: Array<Object>, checkIn: Array<string>) {
+export function importAttendee([attendees, checkIn]: Array<Array<Object>>) {
+  toastr.success('Import attendee data');
   return {
     attendees: attendees.map(attendee => Object.assign({}, attendee, {
       checkIn: checkIn.indexOf(attendee.id) !== -1
     })),
     type: IMPORT_ATTENDEE
+  }
+}
+
+export const IMPORT_TIMETABLE = 'IMPORT_TIMETABLE';
+export function importTimetable(module: string, data: any) {
+  return {
+    data, module,
+    type: IMPORT_TIMETABLE
   }
 }

@@ -6,6 +6,12 @@ const {assets} = global.serviceWorkerOption;
 const files = [
   '/assets/app.css',
   '/data/attendee.json',
+  '/data/languages.json',
+  '/data/schedule.json',
+  '/data/speakers.json',
+  '/data/tags.json',
+  '/data/topics.json',
+  '/data/venues.json',
   ...assets
 ];
 
@@ -33,13 +39,7 @@ self.addEventListener('activate', (event) => {
 });
 
 self.addEventListener('fetch', (event: FetchEvent) => {
-  let found = false;
-  for (let file of files) {
-    if (event.request.url.endsWith(file) && event.request.url.startsWith('https://') && event.request.method === 'GET') {
-      found = true;
-      break;
-    }
-  }
+  const found = files.some(file => event.request.url.endsWith(file) && event.request.url.startsWith('https://') && event.request.method === 'GET');
   if (!found) return;
 
   event.respondWith(caches.open(CACHE_NAME).then((cache: Cache) => {

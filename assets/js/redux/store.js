@@ -4,9 +4,7 @@ import middlewares from './middlewares';
 
 export default function () {
   const state = {
-    attendees: [],
-    visibilityFilter: 'SHOW_ALL',
-    localCheckIn: []
+    visibilityFilter: 'SHOW_ALL'
   };
   return createStore(app, state, middlewares);
 };

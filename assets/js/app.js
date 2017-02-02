@@ -12,7 +12,7 @@ const store = createStore();
 runtime.register({
   scope: `https://${location.host}/`
 })
-  .catch(e => console.log(e));
+  .catch(e => console.trace(e));
 
 fetchData(store);
 

@@ -1,4 +1,4 @@
-import fetchJson from './json';
+import fetchJson from '../json';
 
 const promise = fetchJson('/data/attendee.json')
   .then(function (data) {
