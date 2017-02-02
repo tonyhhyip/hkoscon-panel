@@ -3,7 +3,7 @@ import React from 'react';
 import classNames from 'classnames';
 
 type CardProps = {
-  children: React.Element<*>,
+  children?: React.Element<*>,
   className?: string
 }
 

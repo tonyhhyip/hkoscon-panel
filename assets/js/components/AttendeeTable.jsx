@@ -1,7 +1,21 @@
+//@flow
 import React from 'react';
 import Attendee from './Attendee';
 
-export default function AttendeeTable(props) {
+type AttendeeData = {
+  id: string,
+  name: string,
+  type: string,
+  checkIn: boolean,
+  ticket: string
+}
+
+type Props = {
+  attendees: Array<AttendeeData>,
+  checkIn: Function
+}
+
+export default function AttendeeTable(props: Props) {
   return (
     <table>
       <thead>
@@ -14,7 +28,13 @@ export default function AttendeeTable(props) {
       </tr>
       </thead>
       <tbody>
-      {props.attendees && props.attendees.map(data => <Attendee key={data.id} handleCheckIn={props.checkIn} {...data}/>)}
+      {props.attendees && props.attendees.map((data: AttendeeData) => {
+        return <Attendee
+          key={data.id} handleCheckIn={props.checkIn}
+          name={data.name} id={data.id} type={data.type}
+          checkIn={data.checkIn} ticket={data.ticket}
+        />;
+      })}
       </tbody>
     </table>
   );

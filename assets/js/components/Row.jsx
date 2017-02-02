@@ -4,7 +4,7 @@ import classNames from 'classnames';
 
 type Props = {
   className?: string,
-  children: React.Element<*>
+  children?: React.Element<*>
 }
 
 export default function Row(props: Props) {

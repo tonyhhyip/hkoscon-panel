@@ -1,6 +1,7 @@
 //@flow
 declare type Navigator = {
-  serviceWorker: ServiceWokerContainer
+  serviceWorker: ServiceWokerContainer,
+  mediaDevices: MediaDevices
 }
 
 declare var navigator: Navigator;

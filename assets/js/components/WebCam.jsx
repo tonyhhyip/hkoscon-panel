@@ -1,8 +1,13 @@
+//@flow
 import React from 'react';
 import QrCode from 'qrcode-reader';
 import toastr from 'toastr';
 import Container from './Container';
 import extract from '../feature/barcode';
+
+type Props = {
+  handleCheckIn: (id: string, result: boolean) => void
+}
 
 type State = {
   timeout: number | null,
@@ -12,7 +17,8 @@ type State = {
 
 export default class CheckIn extends React.Component {
   state: State;
-  constructor(props) {
+  props: Props;
+  constructor(props: Props) {
     super(props);
     this.state = {
       timeout: null,
@@ -76,13 +82,13 @@ export default class CheckIn extends React.Component {
     const successCallback = function (stream) {
       video.src = window.URL.createObjectURL(stream) || stream;
       localMediaStream = stream;
-      self.setState({stream, timeoute: setTimeout(scan, 1000)});
+      self.setState({stream, timeout: setTimeout(scan, 1000)});
       video.play();
     };
 
-    navigator.getUserMedia({video: true}, successCallback, function (e) {
-      console.error(e);
-    });
+    navigator.mediaDevices.getUserMedia({video: true})
+      .then(successCallback)
+      .catch(e => console.trace(e));
 
     qrcode.callback = function (result) {
       if (result)
@@ -92,16 +98,19 @@ export default class CheckIn extends React.Component {
     this.setState({capture: true});
   }
 
-  handleTicketScan(result) {
+  handleTicketScan(result: string) {
+    const self = this;
     const {attendee} = extract(result);
     fetch(`/api/checkin/${attendee}`, {method: 'POST'})
       .then((response) => {
         if (response.status === 200) {
           toastr.success('Success Check In');
+          self.props.handleCheckIn(attendee, true);
         } else {
           toastr.error('Fail to check in');
+          self.props.handleCheckIn(attendee, false);
         }
-      })
+      });
   }
 
   stopCapture() {
