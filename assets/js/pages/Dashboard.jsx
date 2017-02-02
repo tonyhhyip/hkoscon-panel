@@ -4,7 +4,7 @@ import Row from '../components/Row';
 import Col from '../components/Col';
 import {Card, Content} from '../components/Card';
 import Clock from '../components/Clock';
-import InstanceAttendee from '../containers/InstanceAttendee';
+import AttendeeNumber from '../containers/AttendeeNumber';
 
 export default class Dashboard extends React.Component {
   render() {
@@ -19,7 +19,7 @@ export default class Dashboard extends React.Component {
             </Card>
           </Col>
           <Col s={6} l={3}>
-            <InstanceAttendee/>
+            <AttendeeNumber/>
           </Col>
         </Row>
       </Container>

@@ -2,7 +2,7 @@ import React from 'react';
 import Container from '../components/Container';
 import Row from '../components/Row';
 import Col from '../components/Col';
-import TimetableDayTab from '../containers/TimetableDayTab';
+import TimetableTab from '../containers/TimetableTab';
 
 export default class Timetable extends React.Component {
   render() {
@@ -10,7 +10,7 @@ export default class Timetable extends React.Component {
       <Container>
         <Row>
           <Col s={12}>
-            <TimetableDayTab/>
+            <TimetableTab/>
           </Col>
         </Row>
       </Container>

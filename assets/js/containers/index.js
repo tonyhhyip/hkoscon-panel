@@ -1,6 +1,6 @@
-import NameSearchFilter from './NameSeatchFilter';
-import ResetFilter from './ResetFilter';
-import TicketTypeFilter from './TicketTypeFilter';
-import VisibleAttendeeTable from './VisibleAttendeeTable';
+import NameSearch from './NameSeatch';
+import ResetButton from './ResetButton';
+import TicketType from './TicketType';
+import AttendeeTable from './AttendeeTable';
 
-export {NameSearchFilter, ResetFilter, TicketTypeFilter, VisibleAttendeeTable};
+export {NameSearch, ResetButton, TicketType, AttendeeTable};

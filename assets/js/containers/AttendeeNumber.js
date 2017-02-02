@@ -9,6 +9,4 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = () => {};
 
-const InstanceAttendee = connect(mapStateToProps, mapDispatchToProps)(AttendeeNumber);
-
-export default InstanceAttendee;
+export default connect(mapStateToProps, mapDispatchToProps)(AttendeeNumber);

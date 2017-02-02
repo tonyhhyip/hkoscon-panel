@@ -11,6 +11,4 @@ const mapDispatchToProp = (dispatch) => {
   }
 };
 
-const ResetFilter = connect(mapStateToProps, mapDispatchToProp)(ResetButton);
-
-export default ResetFilter;
+export default connect(mapStateToProps, mapDispatchToProp)(ResetButton);

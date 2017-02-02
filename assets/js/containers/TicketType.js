@@ -21,6 +21,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 };
 
-const TicketTypeFilter =  connect(mapStateToProps, mapDispatchToProps)(TicketType);
-
-export default TicketTypeFilter;
+export default connect(mapStateToProps, mapDispatchToProps)(TicketType);

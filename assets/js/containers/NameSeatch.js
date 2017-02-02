@@ -13,6 +13,4 @@ const mapDispatchToProps = (dispatch: Function) => {
   }
 };
 
-const NameSearchFilter = connect(mapStateToProps, mapDispatchToProps)(NameSearch);
-
-export default NameSearchFilter;
+export default connect(mapStateToProps, mapDispatchToProps)(NameSearch);

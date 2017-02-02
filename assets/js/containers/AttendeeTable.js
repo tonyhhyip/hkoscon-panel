@@ -47,9 +47,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 };
 
-const VisibleAttendeeTable = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(AttendeeTable);
-
-export default VisibleAttendeeTable;
+export default connect(mapStateToProps, mapDispatchToProps)(AttendeeTable);

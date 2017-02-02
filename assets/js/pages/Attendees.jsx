@@ -2,22 +2,22 @@
 import React from 'react';
 import Container from '../components/Container';
 import Row from '../components/Row';
-import ResetFilter from '../containers/ResetFilter';
-import VisibleAttendeeTable from '../containers/VisibleAttendeeTable';
-import NameSearchFilter from '../containers/NameSeatchFilter';
-import TicketTypeFilter from '../containers/TicketTypeFilter';
+import ResetButton from '../containers/ResetButton';
+import AttendeeTable from '../containers/AttendeeTable';
+import NameSearch from '../containers/NameSeatch';
+import TicketType from '../containers/TicketType';
 
 export default function Attendees(){
   return (
     <Container>
       <form onSubmit={e => e.preventDefault()}>
         <Row>
-          <NameSearchFilter/>
-          <TicketTypeFilter />
-          <ResetFilter />
+          <NameSearch/>
+          <TicketType />
+          <ResetButton />
         </Row>
       </form>
-      <VisibleAttendeeTable/>
+      <AttendeeTable/>
     </Container>
   );
 }
