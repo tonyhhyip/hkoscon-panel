@@ -1,6 +1,7 @@
+//@flow
+import type {Store} from 'redux';
 import attendees from './attendees';
-import attendeeStatus from './attendeeStatus';
 
-export default [attendees, attendeeStatus];
-
-export {attendees};
+export default function (store: Store<Object, Object>) {
+  attendees(store);
+};

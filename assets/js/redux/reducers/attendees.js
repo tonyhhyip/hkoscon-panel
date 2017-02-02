@@ -1,4 +1,4 @@
-import {UPDATE_CHECK_IN, NOTICE_CHECK_IN} from '../action';
+import {UPDATE_CHECK_IN, NOTICE_CHECK_IN, IMPORT_ATTENDEE} from '../action';
 
 const attendee = (state = {}, action) => {
   switch (action.type) {
@@ -17,6 +17,8 @@ const attendee = (state = {}, action) => {
 
 const attendees = (state = [], action) => {
   switch (action.type) {
+    case IMPORT_ATTENDEE:
+      return [].concat(state, action.attendees);
     case UPDATE_CHECK_IN:
     case NOTICE_CHECK_IN:
       return state.map(t => attendee(t, action));

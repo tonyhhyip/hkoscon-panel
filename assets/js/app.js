@@ -7,13 +7,14 @@ import AppRouter from './Router';
 import createStore from './redux/store';
 import fetchData from './fetch';
 
+const store = createStore();
+
 runtime.register({
   scope: `https://${location.host}/`
 })
-  .catch(e => console.log(e))
-  .then(() => Promise.all(fetchData))
-  .then((values) => createStore(values))
-  .then(function (data) {
-    ReactDOM.render(<AppRouter data={data} />, document.getElementById('react-root'));
-    notice(data);
-  });
+  .catch(e => console.log(e));
+
+fetchData(store);
+
+ReactDOM.render(<AppRouter data={store} />, document.getElementById('react-root'));
+notice(store);

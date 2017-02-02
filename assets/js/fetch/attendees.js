@@ -1,16 +1,11 @@
-import fetchJson from './json';
+//@flow
+import type {Store} from 'redux';
+import data from './attendeeData';
+import status from './attendeeStatus';
+import {importAttendee} from '../redux/action';
 
-const promise = fetchJson('/data/attendee.json')
-  .then(function (data) {
-    return Object.keys(data).map(function (id) {
-      const attendee = data[id];
-      return {
-        id,
-        name: attendee.name,
-        ticket: attendee.ticket,
-        type: attendee.type
-      }
-    });
-  });
-
-export default promise;
+export default function (store: Store<Object, Object>) {
+  Promise.all([data, status])
+    .then(([data, status]) => importAttendee(data, status))
+    .then(action => store.dispatch(action));
+}

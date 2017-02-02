@@ -37,3 +37,13 @@ export function noticeCheckIn(data: Object) {
     type: NOTICE_CHECK_IN
   };
 }
+
+export const IMPORT_ATTENDEE = 'IMPORT_ATTENDEE';
+export function importAttendee(attendees: Array<Object>, checkIn: Array<string>) {
+  return {
+    attendees: attendees.map(attendee => Object.assign({}, attendee, {
+      checkIn: checkIn.indexOf(attendee.id) !== -1
+    })),
+    type: IMPORT_ATTENDEE
+  }
+}
