@@ -6,9 +6,11 @@ import languages from './languages';
 import tags from './tags';
 import speakers from './speakers';
 import schedule from './schedule';
+import timetableFilter from './timetableFilter';
 
 export default combineReducers({
   attendees, schedule,
   visibilityFilter, localCheckIn,
-  languages, tags, speakers
+  languages, tags, speakers,
+  timetableFilter
 });
