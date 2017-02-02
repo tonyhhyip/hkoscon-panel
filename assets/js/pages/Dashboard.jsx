@@ -4,7 +4,7 @@ import Row from '../components/Row';
 import Col from '../components/Col';
 import {Card, Content} from '../components/Card';
 import Clock from '../components/Clock';
-import InstanceAttendee from '../redux/containers/InstanceAttendee';
+import InstanceAttendee from '../containers/InstanceAttendee';
 
 export default class Dashboard extends React.Component {
   render() {

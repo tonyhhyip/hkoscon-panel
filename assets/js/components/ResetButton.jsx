@@ -1,6 +1,6 @@
 //@flow
 import React from 'react';
-import Col from '../../components/Col';
+import Col from './Col';
 
 type Props = {
   handleReset: Function

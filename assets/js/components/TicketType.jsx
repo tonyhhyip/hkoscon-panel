@@ -1,5 +1,5 @@
 import React from 'react';
-import Col from '../../components/Col';
+import Col from './Col';
 
 export default function TicketType(props) {
   const values = {

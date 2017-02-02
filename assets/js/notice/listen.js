@@ -1,7 +1,7 @@
 //@flow
 import type {Store} from 'redux';
 import type firebase from 'firebase/messaging';
-import {noticeCheckIn} from '../redux/action';
+import {noticeCheckIn} from '../action';
 
 export default function (store: Store<Object, Object>, messaging: firebase.Messaging) {
   return () => messaging.onMessage(payload => {

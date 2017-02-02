@@ -1,6 +1,6 @@
 //@flow
 import React from 'react';
-import InputField from '../../components/InputField';
+import InputField from './InputField';
 
 type Props = {
   handleChange: Function

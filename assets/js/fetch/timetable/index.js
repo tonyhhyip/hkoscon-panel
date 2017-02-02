@@ -1,7 +1,7 @@
 //@flow
 import type {Store} from 'redux';
 import fetching from '../fetch';
-import {importTimetable} from '../../redux/action';
+import {importTimetable} from '../../action';
 import fetchLanguage from './language';
 import fetchSpeakers  from './speakers';
 import fetchTags from './tags';

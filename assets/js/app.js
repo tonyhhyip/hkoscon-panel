@@ -4,7 +4,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import runtime from 'serviceworker-webpack-plugin/lib/runtime';
 import AppRouter from './Router';
-import createStore from './redux/store';
+import createStore from './store';
 import fetchData from './fetch';
 
 const store = createStore();
