@@ -17,3 +17,7 @@ declare type ServiceWorkerGlobalScope = {
   registration: ServiceWorkerRegistration;
   clients: Clients;
 }
+
+declare type ServiceWokerContainer = {
+  getRegistration(): Promise<ServiceWorkerRegistration>
+}
