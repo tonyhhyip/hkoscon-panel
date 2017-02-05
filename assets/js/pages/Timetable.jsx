@@ -1,18 +1,19 @@
+//@flow
 import React from 'react';
+import type {RouterContext} from 'react-router';
 import Container from '../components/Container';
-import Row from '../components/Row';
-import Col from '../components/Col';
-import TimetableTab from '../containers/TimetableTab';
+import TimetableContainer from '../containers/Timetable';
+
+type Props = {
+  router: RouterContext
+}
 
 export default class Timetable extends React.Component {
+  props: Props;
   render() {
     return (
       <Container>
-        <Row>
-          <Col s={12}>
-            <TimetableTab/>
-          </Col>
-        </Row>
+        <TimetableContainer/>
       </Container>
     );
   }

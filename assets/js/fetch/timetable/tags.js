@@ -1,4 +1,4 @@
 //@flow
-import fetchJson from '../json';
+import fetchYaml from '../yaml';
 
-export default fetchJson('/data/tags.json');
+export default fetchYaml('/data/tags.yaml');

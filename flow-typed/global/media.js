@@ -1,5 +1,5 @@
 //@flow
 
 type MediaDevices = {
-  getUserMedia(options: Object, successCallback: Function, errorCallback: Function): void
+  getUserMedia(options: Object): Promise<*>
 }

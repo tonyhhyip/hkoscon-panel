@@ -3,7 +3,11 @@ import { connect } from 'react-redux'
 import {filterName} from '../action'
 import NameSearch from '../components/NameSearch';
 
-const mapStateToProps = () => {};
+const mapStateToProps = (state) => {
+  return {
+    value: state.visibilityFilter.name
+  }
+};
 
 const mapDispatchToProps = (dispatch: Function) => {
   return {

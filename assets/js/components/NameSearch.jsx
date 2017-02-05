@@ -10,33 +10,58 @@ type State = {
   value: string
 }
 
+type Context = {
+  router: ContextRouter
+}
+
 export default class NameSearch extends React.Component {
   props: Props;
   state: State;
+  context: Context;
 
-  constructor(props: Props, context: Object) {
+  constructor(props: Props, context: Context) {
     super(props, context);
+    const value = this.props.value;
     this.state = {
-      value: ''
+      value: value && value !== '/(?:)/gi' ? value.toString().replace('/gi', '').replace(/^\//, '') : ''
     }
+  }
+
+  componentWillReceiveProps(nextProps: Props) {
+    const value = nextProps.value;
+    this.setState({
+      value: value && value.toString() !== '/(?:)/gi' ? value.toString().replace('/gi', '').replace(/^\//, '') : ''
+    });
   }
 
   handleChange(e: Object) {
     const {value} = e.target;
     this.setState({value});
     this.props.handleChange(value);
+    const {router} = this.context;
+    let query = Object.assign({}, router.location.query, {
+      name: value
+    });
+    if (!value) {
+      delete query.name;
+    }
+
+    router.push({
+      query,
+      pathname: router.location.pathname,
+    });
   }
 
   render() {
     return (
       <InputField inline className="col l3 s6">
-        <input id="name-search" type="text" onChange={this.handleChange.bind(this)} value={this.state.value} />
+        <input name="name" id="name-search" type="text" onChange={event => this.handleChange(event)} value={this.state.value} />
         <label htmlFor="name-search">Name</label>
       </InputField>
     );
   }
+};
 
-  shouldComponentUpdate(nextProps: any, nextState: State) {
-    return nextState.value !== this.state.value;
-  }
+NameSearch.contextTypes = {
+  router: React.PropTypes.object
 };

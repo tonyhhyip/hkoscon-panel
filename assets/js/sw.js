@@ -6,12 +6,12 @@ const {assets} = global.serviceWorkerOption;
 const files = [
   '/assets/app.css',
   '/data/attendee.json',
-  '/data/languages.json',
-  '/data/schedule.json',
-  '/data/speakers.json',
-  '/data/tags.json',
-  '/data/topics.json',
-  '/data/venues.json',
+  '/data/languages.yaml',
+  '/data/schedule.yaml',
+  '/data/speakers.yaml',
+  '/data/tags.yaml',
+  '/data/topics.yaml',
+  '/data/venues.yaml',
   ...assets
 ];
 

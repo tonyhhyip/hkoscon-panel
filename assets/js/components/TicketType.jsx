@@ -8,8 +8,13 @@ type Props = {
   value: string | null
 }
 
+type Context = {
+  router: ContextRouter
+}
+
 export default class TicketType extends React.Component {
   props: Props;
+  context: Context;
   render() {
     const values = {
       normal: 'Normal',
@@ -24,10 +29,10 @@ export default class TicketType extends React.Component {
           {name}
         </a>
         <ul id="ticket-type" className="dropdown-content">
-          <li><a href="#" onClick={this.props.handleClick('')}>Ticket Type</a></li>
+          <li><a href="#" onClick={event => this.handleClick('', event)}>Ticket Type</a></li>
           {Object.keys(values).map(key => {
             return (<li key={key}>
-              <a href="#" onClick={this.props.handleClick(values[key])}>
+              <a href="#" onClick={event => this.handleClick(values[key], event)}>
                 {values[key]}
               </a>
             </li>);
@@ -38,6 +43,22 @@ export default class TicketType extends React.Component {
     )
   }
 
+  handleClick(value, event) {
+    event.preventDefault();
+    this.props.handleClick(value);
+    const {router} = this.context;
+    let query = Object.assign({}, router.location.query, {
+      type: value
+    });
+    if (!value) {
+      delete query.type;
+    }
+    router.push({
+      query,
+      pathname: router.location.pathname,
+    });
+  }
+
   componentDidUpdate() {
     $('.dropdown-button').dropdown();
   }
@@ -46,3 +67,7 @@ export default class TicketType extends React.Component {
     $('.dropdown-button').dropdown();
   }
 }
+
+TicketType.contextTypes = {
+  router: React.PropTypes.object
+};

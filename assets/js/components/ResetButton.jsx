@@ -6,6 +6,22 @@ type Props = {
   handleReset: Function
 }
 
-export default function ResetButton(props: Props) {
-  return <Col s={6} l={3}><button className="btn" type="button" onClick={props.handleReset}>Reset</button></Col>;
+type Context = {
+  router: ContextRouter
 }
+
+export default function ResetButton(props: Props, context: Context) {
+  const handleClick = () => {
+    context.router.push({
+      pathname: context.router.location.pathname
+    });
+    props.handleReset();
+  };
+  return (
+    <Col s={6} l={3}><button className="btn" type="button" onClick={handleClick}>Reset</button></Col>
+  );
+}
+
+ResetButton.contextTypes = {
+  router: React.PropTypes.object
+};

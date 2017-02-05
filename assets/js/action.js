@@ -53,6 +53,9 @@ export function importAttendee([attendees, checkIn]: Array<Array<Object>>) {
 
 export const IMPORT_TIMETABLE = 'IMPORT_TIMETABLE';
 export function importTimetable(module: string, data: any) {
+  if (module === 'schedule') {
+    toastr.success('Import Timetable');
+  }
   return {
     data, module,
     type: IMPORT_TIMETABLE

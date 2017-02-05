@@ -14,7 +14,8 @@ type FetchResponse = {
   status: number,
   headers: Array<FetchHeaders>,
   json(): Promise<Object>,
-  clone(): FetchResponse
+  clone(): FetchResponse,
+  text(): Promise<string>
 }
 
 declare var fetch: (url: FetchRequest | string, option?: Object) => Promise<FetchResponse>;

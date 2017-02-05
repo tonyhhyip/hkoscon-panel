@@ -1,4 +1,4 @@
-.tabs {
+.tabs, .react-tabs {
   &.tabs-transparent {
     background-color: transparent;
 
@@ -30,7 +30,7 @@
   }
 
   position: relative;
-  overflow-x: auto;
+  overflow-x: hidden;
   overflow-y: hidden;
   height: 48px;
   width: 100%;

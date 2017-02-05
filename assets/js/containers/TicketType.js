@@ -11,13 +11,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    handleClick: (value) => {
-      if (value) {
-        return () => dispatch(filterTicketType(value))
-      } else {
-        return () => dispatch(filterTicketType(null))
-      }
-    }
+    handleClick: (value) => dispatch(filterTicketType(value ? value : null))
   }
 };
 
