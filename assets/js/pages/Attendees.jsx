@@ -11,17 +11,17 @@ import {filterName, filterTicketType} from '../action';
 
 type Context = {
   router: ContextRouter,
-  store: Store
+  store: Store<Object, Object>
 }
 
-function dispatchQuery(query:Object, key: string, store: Store, actionConstructor: Function) {
+function dispatchQuery(query:Object, key: string, store: Store<Object, Object>, actionConstructor: Function) {
   if (key in query) {
     const action = actionConstructor(query[key]);
     store.dispatch(action);
   }
 }
 
-function dispatch(router: ContextRouter, store: Store) {
+function dispatch(router: ContextRouter, store: Store<Object, Object>) {
   if (router.location.query) {
     const {query} = router.location;
     dispatchQuery(query, 'name', store, filterName);

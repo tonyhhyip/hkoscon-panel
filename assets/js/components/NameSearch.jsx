@@ -3,7 +3,8 @@ import React from 'react';
 import InputField from './InputField';
 
 type Props = {
-  handleChange: Function
+  handleChange: Function,
+  value?: string
 }
 
 type State = {

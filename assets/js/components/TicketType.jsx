@@ -43,7 +43,7 @@ export default class TicketType extends React.Component {
     )
   }
 
-  handleClick(value, event) {
+  handleClick(value: string, event: Event) {
     event.preventDefault();
     this.props.handleClick(value);
     const {router} = this.context;
