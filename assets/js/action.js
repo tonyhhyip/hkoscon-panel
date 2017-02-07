@@ -61,3 +61,22 @@ export function importTimetable(module: string, data: any) {
     type: IMPORT_TIMETABLE
   }
 }
+
+export const FIREBASE_LOGIN = 'FIREBASE_LOGIN';
+export function firebaseLogin(user: Object) {
+  const key = localStorage.key(0);
+  const content = localStorage.getItem(key);
+  sessionStorage.setItem('user', content);
+  return {
+    user,
+    type: FIREBASE_LOGIN
+  };
+}
+
+export const USER_SESSION = 'USER_SESSION';
+export function userSession(user: Object) {
+  return {
+    user,
+    type: USER_SESSION
+  }
+}

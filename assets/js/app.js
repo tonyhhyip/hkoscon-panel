@@ -6,6 +6,7 @@ import runtime from 'serviceworker-webpack-plugin/lib/runtime';
 import AppRouter from './Router';
 import createStore from './store';
 import fetchData from './fetch';
+import auth from './auth';
 
 const store = createStore();
 
@@ -18,3 +19,4 @@ fetchData(store);
 
 ReactDOM.render(<AppRouter data={store} />, document.getElementById('react-root'));
 notice(store);
+auth(store);

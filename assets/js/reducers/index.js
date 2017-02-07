@@ -8,10 +8,12 @@ import speakers from './speakers';
 import schedule from './schedule';
 import venues from './venues';
 import timetableFilter from './timetableFilter';
+import user from './user';
 
 export default combineReducers({
   attendees, schedule,
   visibilityFilter, localCheckIn,
   languages, tags, speakers,
-  timetableFilter, venues
+  timetableFilter, venues,
+  user
 });
