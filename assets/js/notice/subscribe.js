@@ -4,7 +4,7 @@ export default (token: string) => {
   return fetch(url, {
     method: 'POST',
     headers: {
-      Authorization: `key=${process.env.FIREBAE_MESSAGE_SERVER_KEY}`,
+      Authorization: `key=${process.env.FIREBASE_MESSAGE_SERVER_KEY}`,
       'Content-Type': 'application/json'
     }
   })

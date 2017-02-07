@@ -1,7 +1,7 @@
 //@flow
 import type {Store} from 'redux';
 import toastr from 'toastr';
-import messaging from './messaging';
+import {messaging} from '../firebase';
 import subscribe from './subscribe';
 import listen from './listen';
 
