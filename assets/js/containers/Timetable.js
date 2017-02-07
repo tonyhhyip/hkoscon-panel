@@ -3,7 +3,8 @@ import Timetable from '../components/Timetable';
 
 const mapStateToProps = (state) => {
   return {
-    schedule: state.schedule
+    schedule: state.schedule,
+    venues: state.venues
   }
 };
 
