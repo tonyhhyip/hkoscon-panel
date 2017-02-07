@@ -10,7 +10,7 @@ module.exports = {
       'process.env.FIREBASE_API_KEY': JSON.stringify(process.env.FIREBASE_API_KEY),
       'process.env.FIREBASE_PROJECT_ID': JSON.stringify(process.env.FIREBASE_PROJECT_ID),
       'process.env.FIREBASE_MESSAGE_SENDER_ID': JSON.stringify(process.env.FIREBASE_MESSAGE_SENDER_ID),
-      'process.env.FIREBAE_MESSAGE_SERVER_KEY': JSON.stringify(process.env.FIREBAE_MESSAGE_SERVER_KEY)
+      'process.env.FIREBASE_MESSAGE_SERVER_KEY': JSON.stringify(process.env.FIREBASE_MESSAGE_SERVER_KEY),
     }),
     new AggressiveMergingPlugin(),
     new ServiceWorkerWebpackPlugin({
