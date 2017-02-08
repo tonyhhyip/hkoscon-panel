@@ -30,7 +30,8 @@ module.exports = {
     'react-dom': 'ReactDOM',
     redux: 'Redux',
     'react-redux': 'ReactRedux',
-    moment: 'moment'
+    moment: 'moment',
+    firebase: 'firebase'
   },
   entry: {
     app: './assets/js/app'
