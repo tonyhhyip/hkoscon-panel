@@ -18,7 +18,7 @@ export default function ResetButton(props: Props, context: Context) {
     props.handleReset();
   };
   return (
-    <Col s={6} l={3}><button className="btn waves-light waves-effect" type="button" onClick={handleClick}>Reset</button></Col>
+    <Col s={6} l={2}><button className="btn waves-light waves-effect" type="button" onClick={handleClick}>Reset</button></Col>
   );
 }
 

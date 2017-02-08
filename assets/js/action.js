@@ -51,6 +51,14 @@ export function importAttendee([attendees, checkIn]: Array<Array<Object>>) {
   }
 }
 
+export const ADD_ATTENDEE = 'ADD_ATTENDEE';
+export function addAttendee(attendee: Object) {
+  return {
+    attendee,
+    type: ADD_ATTENDEE,
+  }
+}
+
 export const IMPORT_TIMETABLE = 'IMPORT_TIMETABLE';
 export function importTimetable(module: string, data: any) {
   if (module === 'schedule') {

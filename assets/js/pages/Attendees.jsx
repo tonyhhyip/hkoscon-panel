@@ -7,6 +7,7 @@ import ResetButton from '../containers/ResetButton';
 import AttendeeTable from '../containers/AttendeeTable';
 import NameSearch from '../containers/NameSeatch';
 import TicketType from '../containers/TicketType';
+import AddAttendeeButton from '../containers/AddAttendeeButton';
 import {filterName, filterTicketType} from '../action';
 
 type Context = {
@@ -36,14 +37,14 @@ export default class Attendees extends React.Component {
   }
 
   render() {
-    const {router} = this.context;
     return (
       <Container>
         <form onSubmit={e => e.preventDefault()}>
           <Row>
-            <NameSearch router={router} />
-            <TicketType router={router}/>
+            <NameSearch />
+            <TicketType />
             <ResetButton />
+            <AddAttendeeButton />
           </Row>
         </form>
         <AttendeeTable/>
