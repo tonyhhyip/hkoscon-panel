@@ -1,16 +1,7 @@
-import fetchJson from '../json';
+import {database} from '../../firebase';
 
-const promise = fetchJson('/data/attendee.json')
-  .then(function (data) {
-    return Object.keys(data).map(function (id) {
-      const attendee = data[id];
-      return {
-        id,
-        name: attendee.name,
-        ticket: attendee.ticket,
-        type: attendee.type
-      }
-    });
-  });
+const promise = new Promise((resolve) => {
+  database.ref('/users').once('value', snapshot => resolve(snapshot.val()));
+});
 
 export default promise;
