@@ -1,7 +1,7 @@
 import {database} from '../../firebase';
 
 const promise = new Promise((resolve) => {
-  database.ref('/users').once('value', snapshot => resolve(snapshot.val()));
+  database.ref('attendees').once('value', snapshot => resolve(snapshot.val()));
 })
   .then(function (data) {
     return Object.keys(data).map(function (id) {
