@@ -21,7 +21,7 @@ const attendee = (state: Object = {}, action: Object) => {
 const attendees = (state: Array<Object> = [], action: Object) => {
   switch (action.type) {
     case ADD_ATTENDEE:
-      return [].concat(state, attendee(null, action));
+      return [].concat(state, attendee({}, action));
     case IMPORT_ATTENDEE:
       return [].concat(state, action.attendees);
     case UPDATE_CHECK_IN:

@@ -6,9 +6,6 @@ export default function (store, provider) {
     if (user) {
       const action = firebaseLogin(user);
       store.dispatch(action);
-    } else if (sessionStorage.getItem('user')) {
-      const action = userSession(JSON.parse(sessionStorage.getItem('user')));
-      store.dispatch(action);
     } else {
       firebase.auth().signInWithRedirect(provider);
     }
