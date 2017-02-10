@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import toastr from 'toastr';
 import Container from '../components/Container';
 import Row from '../components/Row';
@@ -27,14 +28,11 @@ export default class Setting extends React.Component {
   }
 
   componentDidMount() {
-    $('.dropdown-button').dropdown();
+    $('select').material_select();
+    $(ReactDOM.findDOMNode(this.refs.team)).on('change', e => this.handleChange('team', e.target.value));
   }
 
   render() {
-    const handleClick = (key, value) => event => {
-      event.preventDefault();
-      this.handleChange(key, value);
-    };
     return (
       <Container>
         <Row>
@@ -44,20 +42,11 @@ export default class Setting extends React.Component {
           <form>
             <Col s={12}>
               <Row>
-                <Col s={6}>
-                  <a className="dropdown-button btn" href="#" data-activates='ticket-type'>
-                    <i className="material-icons right">arrow_drop_down</i>
-                    {this.state.team}
-                  </a>
-                  <ul id="ticket-type" className="dropdown-content">
-                    {TEAMS.map(team => {
-                      return (<li key={team}>
-                        <a href="#" onClick={handleClick('team', team)}>
-                          {team}
-                        </a>
-                      </li>);
-                    })}
-                  </ul>
+                <Col s={6} className="input-field">
+                  <select ref="team" value={this.state.team}>
+                    {TEAMS.map(team => <option value={team} selected={this.state.team === team}>{team}</option>)}
+                  </select>
+                  <label>Team</label>
                 </Col>
               </Row>
             </Col>
