@@ -43,6 +43,8 @@ function Bar(props) {
 function Dropdown() {
   return (
     <ul id="navbar-dropdown" className="dropdown-content">
+      <li><Link to="/dashboard/setting">Setting</Link></li>
+      <li className="divider" />
       <li><a href="#" onClick={() => auth.signOut()}>Sign Out</a></li>
     </ul>
   );

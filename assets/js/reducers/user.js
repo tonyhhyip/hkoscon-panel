@@ -5,7 +5,7 @@ export default function (state = null, action) {
     case FIREBASE_LOGIN:
       return Object.assign({}, action.user);
     case USER_INFO:
-      return Object.assign({}, state, action.info);
+      return Object.assign({}, state, {info: action.info});
     default:
       return state;
   }

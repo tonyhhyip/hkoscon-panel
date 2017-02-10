@@ -1,9 +1,6 @@
 import {database} from '../firebase';
 import {userInfo} from '../action';
-
-const DEFAULT_INFO = {
-  team: 'Operation'
-};
+import {DEFAULT_INFO} from '../constants';
 
 export default function (store, user) {
   const key = `/users/${user.uid}`;

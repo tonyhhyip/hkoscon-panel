@@ -11,3 +11,7 @@ export const TEAMS = [
   'Operation',
   'Marketing'
 ];
+
+export const DEFAULT_INFO = {
+  team: 'Operation'
+};

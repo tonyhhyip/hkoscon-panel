@@ -10,6 +10,8 @@ import auth from './auth';
 
 const store = createStore();
 
+auth(store);
+
 runtime.register({
   scope: `https://${location.host}/`
 })
@@ -19,4 +21,3 @@ fetchData(store);
 
 ReactDOM.render(<AppRouter data={store} />, document.getElementById('react-root'));
 notice(store);
-auth(store);

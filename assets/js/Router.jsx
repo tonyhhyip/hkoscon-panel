@@ -7,6 +7,7 @@ import Container from './Container';
 import Dashboard from './pages/Dashboard';
 import Attendees from './pages/Attendees';
 import Timetable from './pages/Timetable';
+import Setting from './pages/Setting';
 
 export default function AppRouter(props: {data: Store<Object, Object>}) {
   return (
@@ -17,6 +18,7 @@ export default function AppRouter(props: {data: Store<Object, Object>}) {
           <Route path="/dashboard" component={Dashboard} />
           <Route component={Attendees} path="/dashboard/attendees" />
           <Route component={Timetable} path="/dashboard/timetable" />
+          <Route component={Setting} path="/dashboard/setting" />
           <Redirect to="/dashboard" from="*"/>
         </Route>
       </Router>
