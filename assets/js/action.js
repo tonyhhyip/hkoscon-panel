@@ -85,3 +85,11 @@ export function firebaseLogin(user: Object) {
     type: FIREBASE_LOGIN
   };
 }
+
+export const USER_INFO = 'USER_INFO';
+export function userInfo(info) {
+  return {
+    info,
+    type: USER_INFO
+  }
+}
