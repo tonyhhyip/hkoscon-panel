@@ -1,5 +1,5 @@
 import firebase from '../firebase';
-import {firebaseLogin, userSession} from '../action';
+import {firebaseLogin} from '../action';
 
 export default function (store, provider) {
   firebase.auth().onAuthStateChanged((user) => {
