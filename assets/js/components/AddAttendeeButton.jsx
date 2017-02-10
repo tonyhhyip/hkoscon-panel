@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import Col from './Col';
 import Row from './Row';
@@ -67,50 +68,61 @@ function Button() {
   )
 }
 
-function ModalForm(props) {
-  const handleChange = key => event => props.handleChange(key, event.target.value);
-  return (
-    <div id="add-attendee-modal" className="modal modal-fixed-footer">
-      <form onSubmit={e => e.preventDefault()}>
-        <div className="modal-content">
-          <h4>Add Attendee</h4>
-          <Row>
-            <Col s={12}>
-              <Row>
-                <Col s={12} className="input-field">
-                  <input id="attendee-id" type="text" value={props.id} onChange={handleChange('id')} />
-                  <label htmlFor="attendee-id">ID</label>
-                </Col>
-              </Row>
-              <Row>
-                <Col s={12} className="input-field">
-                  <input id="attendee-name" type="text" value={props.name} onChange={handleChange('name')} />
-                  <label htmlFor="attendee-name">Name</label>
-                </Col>
-              </Row>
-              <Row>
-                <Col s={12} className="input-field">
-                  <input id="attendee-ticket" type="text" value={props.ticket} onChange={handleChange('ticket')} />
-                  <label htmlFor="attendee-ticket">Ticket ID</label>
-                </Col>
-              </Row>
-              <Row>
-                <Col s={12} className="input-field">
-                  <select onChange={handleChange('type')} value={props.type}>
-                    {TICKET_TYPES.map(type => <option value={type}>{type}</option>)}
-                  </select>
-                  <label>Ticket Type</label>
-                </Col>
-              </Row>
-            </Col>
-          </Row>
-        </div>
-        <div className="modal-footer">
-          <button className="modal-close modal-action waves-effect btn-flat" onClick={() => props.handleReset()}>Cancel</button>
-          <button type="reset" className="btn-flat" onClick={() => props.handleReset()}>Reset</button>
-          <button type="button" className="btn-flat" onClick={() => props.handleSubmit()}>Submit</button>
-        </div>
-      </form>
-    </div>
-  );
+class ModalForm extends React.Component {
+  render() {
+    const handleChange = key => event => {
+      debugger;
+      this.props.handleChange(key, event.target.value)
+    };
+    return (
+      <div id="add-attendee-modal" className="modal modal-fixed-footer">
+        <form onSubmit={e => e.preventDefault()}>
+          <div className="modal-content">
+            <h4>Add Attendee</h4>
+            <Row>
+              <Col s={12}>
+                <Row>
+                  <Col s={12} className="input-field">
+                    <input id="attendee-id" type="text" value={this.props.id} onChange={handleChange('id')}/>
+                    <label htmlFor="attendee-id">ID</label>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col s={12} className="input-field">
+                    <input id="attendee-name" type="text" value={this.props.name} onChange={handleChange('name')}/>
+                    <label htmlFor="attendee-name">Name</label>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col s={12} className="input-field">
+                    <input id="attendee-ticket" type="text" value={this.props.ticket} onChange={handleChange('ticket')}/>
+                    <label htmlFor="attendee-ticket">Ticket ID</label>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col s={12} className="input-field">
+                    <select ref="type" value={this.props.type}>
+                      {TICKET_TYPES.map(type => <option value={type}>{type}</option>)}
+                    </select>
+                    <label>Ticket Type</label>
+                  </Col>
+                </Row>
+              </Col>
+            </Row>
+          </div>
+          <div className="modal-footer">
+            <button className="modal-close modal-action waves-effect btn-flat" onClick={() => this.props.handleReset()}>
+              Cancel
+            </button>
+            <button type="reset" className="btn-flat" onClick={() => this.props.handleReset()}>Reset</button>
+            <button type="button" className="btn-flat" onClick={() => this.props.handleSubmit()}>Submit</button>
+          </div>
+        </form>
+      </div>
+    );
+  }
+
+  componentDidMount() {
+    $(ReactDOM.findDOMNode(this.refs.type)).on('change', e => this.props.handleChange('type', e.target.value) );
+  }
 }
