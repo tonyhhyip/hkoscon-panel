@@ -59,6 +59,14 @@ export function addAttendee(attendee: Object) {
   }
 }
 
+export const UPDATE_ATTENDEE = 'UPDATE_ATTENDEE';
+export function updateAttendee(index: number, attendee: Object) {
+  return {
+    index, attendee,
+    type: UPDATE_ATTENDEE
+  }
+}
+
 export const IMPORT_TIMETABLE = 'IMPORT_TIMETABLE';
 export function importTimetable(module: string, data: any) {
   if (module === 'schedule') {
