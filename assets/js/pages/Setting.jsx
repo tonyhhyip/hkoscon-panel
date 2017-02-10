@@ -1,4 +1,5 @@
 import React from 'react';
+import toastr from 'toastr';
 import Container from '../components/Container';
 import Row from '../components/Row';
 import Col from '../components/Col';
@@ -73,6 +74,7 @@ export default class Setting extends React.Component {
   handleSave() {
     const state = this.context.store.getState();
     database.ref(`/users/${state.user.uid}`).set(this.state);
+    toastr.success('Save Setting');
   }
 }
 
