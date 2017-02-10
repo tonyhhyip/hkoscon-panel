@@ -11,7 +11,6 @@ export default function Navbar() {
           <ul className="right">
             <li><Link to="/dashboard/attendees">Attendee</Link></li>
             <li><Link to="/dashboard/timetable">Timetable</Link></li>
-            <li><Link to="/dashboard/check-in">Check-in</Link></li>
           </ul>
         </div>
       </Container>

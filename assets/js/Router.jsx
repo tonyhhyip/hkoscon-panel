@@ -6,7 +6,6 @@ import { Redirect, IndexRedirect, browserHistory, Router, Route } from 'react-ro
 import Container from './Container';
 import Dashboard from './pages/Dashboard';
 import Attendees from './pages/Attendees';
-import CheckIn from './pages/CheckIn';
 import Timetable from './pages/Timetable';
 
 export default function AppRouter(props: {data: Store<Object, Object>}) {
@@ -17,7 +16,6 @@ export default function AppRouter(props: {data: Store<Object, Object>}) {
           <IndexRedirect to="/dashboard"/>
           <Route path="/dashboard" component={Dashboard} />
           <Route component={Attendees} path="/dashboard/attendees" />
-          <Route component={CheckIn} path="/dashboard/check-in" />
           <Route component={Timetable} path="/dashboard/timetable" />
           <Redirect to="/dashboard" from="*"/>
         </Route>
