@@ -2,6 +2,7 @@ import React from 'react';
 import $ from 'jquery';
 import Col from './Col';
 import Row from './Row';
+import {TICKET_TYPES} from '../constants';
 
 export default class AddAttendeeButton extends React.Component {
   constructor(props) {
@@ -65,8 +66,6 @@ function Button() {
     </a>
   )
 }
-
-const TICKET_TYPES = ['Normal', 'Staff', 'Speaker', 'Sponsor'];
 
 function ModalForm(props) {
   const handleChange = key => event => props.handleChange(key, event.target.value);
