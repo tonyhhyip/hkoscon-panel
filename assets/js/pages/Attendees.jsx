@@ -8,6 +8,7 @@ import AttendeeTable from '../containers/AttendeeTable';
 import NameSearch from '../containers/NameSeatch';
 import TicketType from '../containers/TicketType';
 import AddAttendeeButton from '../containers/AddAttendeeButton';
+import WebCam from '../containers/WebCam';
 import {filterName, filterTicketType} from '../action';
 
 type Context = {
@@ -47,6 +48,7 @@ export default class Attendees extends React.Component {
             <AddAttendeeButton />
           </Row>
         </form>
+        <WebCam style={{textAlign: 'center'}} />
         <AttendeeTable/>
       </Container>
     );

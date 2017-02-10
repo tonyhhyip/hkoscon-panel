@@ -29,7 +29,7 @@ export default class CheckIn extends React.Component {
   render() {
     return (
       <Container {...this.props}>
-        <video width="500px" ref="video" />
+        <video width={`${this.state.capture ? 500 : 0}px`} ref="video" />
         <canvas width="498px" height="375px" style={{display: 'none'}} ref="canvas" id="qr-canvas" />
         <Container>
           <button className="btn" onClick={this.toggleCapture.bind(this)}>
@@ -57,31 +57,27 @@ export default class CheckIn extends React.Component {
     const video = this.refs.video;
     const canvas = this.refs.canvas;
     const context = canvas.getContext('2d');
-    let localMediaStream;
-
     const qrcode = new QrCode();
-
-    const scan = function () {
-      if (localMediaStream) {
-        context.drawImage(video, 0, 0, 307, 250);
-        try {
-          qrcode.decode();
-        } catch (e) {
-          console.error(e);
-        }
-        self.setState({
-          timeout: setTimeout(scan, 500)
-        });
-      } else {
-        self.setState({
-          timeout: setTimeout(scan, 500)
-        });
-      }
-    };
 
     const successCallback = function (stream) {
       video.src = window.URL.createObjectURL(stream) || stream;
-      localMediaStream = stream;
+      const scan = function () {
+        if (stream) {
+          context.drawImage(video, 0, 0, 307, 250);
+          try {
+            qrcode.decode();
+          } catch (e) {
+            console.error(e);
+          }
+          self.setState({
+            timeout: setTimeout(scan, 500)
+          });
+        } else {
+          self.setState({
+            timeout: setTimeout(scan, 500)
+          });
+        }
+      };
       self.setState({stream, timeout: setTimeout(scan, 1000)});
       video.play();
     };
