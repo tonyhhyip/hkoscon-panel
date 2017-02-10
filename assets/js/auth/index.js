@@ -1,9 +1,20 @@
-import firebase from '../firebase';
-import capture from './capture';
+import firebase, {auth} from '../firebase';
+import {firebaseLogin} from '../action';
+import info from './data';
 
-const {GithubAuthProvider} = firebase.auth;
-export const provider = new GithubAuthProvider();
+export const provider = new firebase.auth.GithubAuthProvider();
 
 export default function (store) {
-  capture(store, provider);
+  return new Promise((resolve, reject) =>
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        const action = firebaseLogin(user);
+        store.dispatch(action);
+        info(store, user);
+        resolve(user);
+      } else {
+        auth.signInWithRedirect(provider);
+      }
+    })
+  );
 }
