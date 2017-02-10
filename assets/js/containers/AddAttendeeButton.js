@@ -8,7 +8,9 @@ const mapStateToProps = () => {};
 const mapDispatchToProps = (dispatch) => {
   return {
     handleAddAttendee: (attendee) => {
-      database.ref(`attendees/${attendee.id}`).set({
+      const ref = database.ref('attendees').push();
+      ref.set({
+        id: attendee.id,
         name: attendee.name,
         ticket: attendee.ticket,
         type: attendee.type,
