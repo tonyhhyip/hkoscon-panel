@@ -1,5 +1,11 @@
 //@flow
-import {UPDATE_CHECK_IN, NOTICE_CHECK_IN, IMPORT_ATTENDEE, ADD_ATTENDEE} from '../action';
+import {
+  UPDATE_CHECK_IN,
+  NOTICE_CHECK_IN,
+  IMPORT_ATTENDEE,
+  ADD_ATTENDEE,
+  UPDATE_ATTENDEE
+} from '../action';
 
 const attendee = (state: Object = {}, action: Object) => {
   switch (action.type) {
@@ -12,10 +18,20 @@ const attendee = (state: Object = {}, action: Object) => {
         checkIn: action.type === NOTICE_CHECK_IN || action.status
       });
     case ADD_ATTENDEE:
-      return action.attendee;
-    default:
-      return state;
-  }
+      return Object.assign({}, {
+          checkIn: false
+        },
+        action.attendee
+      );
+  case UPDATE_ATTENDEE:
+    return Object.assign({},{
+        checkIn: state.checkIn
+      },
+      action.attendee
+    );
+  default:
+  return state;
+}
 };
 
 const attendees = (state: Array<Object> = [], action: Object) => {
