@@ -1,5 +1,8 @@
 //@flow
 import React from 'react';
+import moment from 'moment';
+import {database} from '../firebase';
+import toastr from 'toastr';
 import CheckIn from './CheckIn';
 
 type Props = {
@@ -7,12 +10,23 @@ type Props = {
   id: string,
   type: string,
   ticket: string,
-  checkIn: boolean,
-  handleCheckIn: Function
+  checkIn: boolean | string
+}
+
+type State = {
+  checkIn: boolean
 }
 
 export default class Attendee extends React.Component {
   props: Props;
+  state: State;
+  constructor(props: Props) {
+    super(props);
+    this.state = {
+      checkIn: true
+    }
+  }
+
   render() {
     return (
       <tr>
@@ -20,12 +34,39 @@ export default class Attendee extends React.Component {
         <td>{this.props.name}</td>
         <td>{this.props.ticket}</td>
         <td>{this.props.type}</td>
-        <td><CheckIn active={!this.props.checkIn} handleClick={this.props.handleCheckIn(this.props.id)}/></td>
+        <td>{this.renderCheckInButton(!!this.props.checkIn)}</td>
       </tr>
     );
   }
 
   shouldComponentUpdate(nextProps: Props) {
-    return nextProps.checkIn !== this.props.checkIn;
+    const checkIn = nextProps.checkIn !== this.props.checkIn && !!nextProps.checkIn;
+    if (checkIn) {
+      toastr.success('Check in successful');
+    }
+    return true;
+  }
+
+  renderCheckInButton(checkIn: boolean) {
+    if (checkIn) {
+      return (
+        <span>{this.props.checkIn}</span>
+      )
+    } else {
+      return (
+        <CheckIn active={this.state.checkIn} handleClick={() => this.handleClick(this.props.id)} />
+      );
+    }
+  }
+
+  handleClick(id: string) {
+    this.setState({checkIn: false});
+    const now = moment();
+    const date = now.format('YYYYMMDD');
+    const timestamp = now.format();
+    const update = {};
+    update[`checkIn/${date}/${id}`] = timestamp;
+    database.ref().update(update)
+      .catch(e => console.trace(e));
   }
 }

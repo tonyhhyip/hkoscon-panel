@@ -1,13 +1,19 @@
 import React from 'react';
 import {Link} from 'react-router';
-import {auth} from '../firebase';
+import {auth, database} from '../firebase';
 import Container from './Container';
 
 export default class Navbar extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      connect: false
+    }
+  }
   render() {
     return (
       <div>
-        <Bar user={this.props.user}/>
+        <Bar user={this.props.user} connect={this.state.connect} />
         <Dropdown />
       </div>
     )
@@ -15,6 +21,7 @@ export default class Navbar extends React.Component {
 
   componentDidMount() {
     $(document.getElementById('navbar-dropdown-button')).dropdown();
+    database.ref('.info/connected').on('value', (snapshot) => this.setState({connect: snapshot.val()}));
   }
 }
 
@@ -25,6 +32,9 @@ function Bar(props) {
         <div className="nav-wrapper">
           <Link to="/" >HKOSCon</Link>
           <ul className="right">
+            <li>
+              <i className="left material-icons">{props.connect ? 'compare_arrows' : 'hourglass_empty'}</i>
+            </li>
             <li><Link to="/dashboard/attendees">Attendee</Link></li>
             <li><Link to="/dashboard/timetable">Timetable</Link></li>
             <li>

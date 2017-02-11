@@ -26,25 +26,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    checkIn: (id) => {
-      return function () {
-        fetch(`/api/checkin/${id}`, {method: 'POST'})
-          .then(function (response) {
-            if (response.status === 200) {
-              toastr.success('Check in Success');
-              dispatch(updateCheckIn(id, true));
-            }
-          })
-          .catch((e) => {
-            toastr.error('Fail to check in');
-            console.error(e);
-            dispatch(updateCheckIn(id, false));
-          })
-      };
-    }
-  }
-};
+const mapDispatchToProps = () => {};
 
 export default connect(mapStateToProps, mapDispatchToProps)(AttendeeTable);

@@ -10,9 +10,9 @@ import {
 
 const attendee = (state: Object = {}, action: Object) => {
   switch (action.type) {
-    case IMPORT_ATTENDEE_DATA:
+    case IMPORT_ATTENDEE_CHECKIN:
       return Object.assign({}, state, {
-        checkIn: state.id in action.checkIn ? action.checkIn[state.id] : false
+        checkIn: action.checkIn && state.id in action.checkIn ? action.checkIn[state.id] : false
       });
     case UPDATE_CHECK_IN:
     case NOTICE_CHECK_IN:

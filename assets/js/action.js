@@ -25,7 +25,7 @@ export function filterName(filter: string) {
 }
 
 export const UPDATE_CHECK_IN = 'UPDATE_CHECK_IN';
-export function updateCheckIn(id: string, status: boolean) {
+export function updateCheckIn(id: string, status: boolean | string) {
   return {
     id, status,
     type: UPDATE_CHECK_IN
