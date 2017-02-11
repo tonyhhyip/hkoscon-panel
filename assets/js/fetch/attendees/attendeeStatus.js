@@ -4,12 +4,21 @@ import {importAttendeeCheckin, updateCheckIn} from '../../action';
 
 export default function (store) {
   const date = moment().format('YYYYMMDD');
-  database.ref(`checkIn/${date}`).once('value', (snapshot) => {
+  const key = `checkIn/${date}`;
+  database.ref(key).once('value', (snapshot) => {
     const action = importAttendeeCheckin(snapshot.val());
     store.dispatch(action);
   });
-  database.ref(`checkIn/${date}`).on('child_added', (data) => {
+  database.ref(key).on('child_added', (data) => {
     const action = updateCheckIn(data.key, data.val());
+    store.dispatch(action);
+  });
+  database.ref(key).on('child_changed', (data) => {
+    const action = updateCheckIn(data.key, data.val());
+    store.dispatch(action);
+  });
+  database.ref(key).on('child_removed', (data) => {
+    const action = updateCheckIn(data.key, false);
     store.dispatch(action);
   })
 }
