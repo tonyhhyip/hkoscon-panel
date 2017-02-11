@@ -40,14 +40,19 @@ export function noticeCheckIn(data: Object) {
   };
 }
 
-export const IMPORT_ATTENDEE = 'IMPORT_ATTENDEE';
-export function importAttendee([attendees, checkIn]: Array<Array<Object>>) {
-  toastr.success('Import attendee data');
+export const IMPORT_ATTENDEE_DATA = 'IMPORT_ATTENDEE_DATE';
+export function importAttendeeData(attendees: Array<Object>) {
   return {
-    attendees: attendees.map(attendee => Object.assign({}, attendee, {
-      checkIn: checkIn.indexOf(attendee.id) !== -1
-    })),
-    type: IMPORT_ATTENDEE
+    attendees,
+    type: IMPORT_ATTENDEE_DATA
+  }
+}
+
+export const IMPORT_ATTENDEE_CHECKIN = 'IMPORT_ATTENDEE_CHECK_IN';
+export function importAttendeeCheckin(checkIn: Object) {
+  return {
+    checkIn,
+    type: IMPORT_ATTENDEE_CHECKIN
   }
 }
 

@@ -1,7 +1,9 @@
 import {database} from '../../firebase';
+import {importAttendeeData} from '../../action';
 
-const promise = new Promise((resolve) => {
-  database.ref('attendees').once('value', snapshot => resolve(snapshot.val()));
-});
-
-export default promise;
+export default function (store) {
+  database.ref('attendees').on('value', (snapshot) => {
+    const action = importAttendeeData(snapshot.val());
+    store.dispatch(action);
+  });
+}
