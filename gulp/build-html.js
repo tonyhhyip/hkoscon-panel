@@ -9,7 +9,7 @@ const htmlmin = require('gulp-htmlmin');
 gulp.task('build:html', () => {
   return gulp.src('./assets/html/**/*.jinja')
     .on('error', log)
-    .pipe(jinja.compile({}))
+    .pipe(jinja.compile(process.env))
     .pipe(rename({
       extname: '.html'
     }))

@@ -12,5 +12,13 @@ module.exports = merge.smart({
       'process.env.NODE_ENV': JSON.stringify('production'),
     }),
   ],
+  externals: {
+    toastr: 'toastr',
+    react: 'React',
+    'react-dom': 'ReactDOM',
+    redux: 'Redux',
+    'react-redux': 'ReactRedux',
+    moment: 'moment'
+  },
   devtool: 'source-map'
 }, config);

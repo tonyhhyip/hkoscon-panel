@@ -24,14 +24,8 @@ module.exports = {
     })
   ],
   externals: {
-    jquery: 'jQuery',
-    toastr: 'toastr',
-    react: 'React',
-    'react-dom': 'ReactDOM',
-    redux: 'Redux',
-    'react-redux': 'ReactRedux',
-    moment: 'moment',
-    firebase: 'firebase'
+    firebase: 'firebase',
+    jquery: 'jQuery'
   },
   entry: {
     app: './assets/js/app'
