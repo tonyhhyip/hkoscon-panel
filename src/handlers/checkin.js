@@ -37,7 +37,7 @@ function sendNotice(attendee) {
     },
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `key=${process.env.FIREBAE_MESSAGE_SERVER_KEY}`
+      'Authorization': `key=${process.env.FIREBASE_MESSAGE_SERVER_KEY}`
     },
     json: true
   })
