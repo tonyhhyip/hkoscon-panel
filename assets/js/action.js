@@ -24,7 +24,15 @@ export function filterName(filter: string) {
   }
 }
 
-export const UPDATE_CHECK_IN = 'UPDATE_CHECK_IN';
+export const LOCAL_CHECK_IN = 'LOCAL_CHECK_IN';
+export function localCheckIn(id: string) {
+  return {
+    id,
+    type: LOCAL_CHECK_IN
+  }
+}
+
+export const UPDATE_CHECK_IN = 'LOCAL_CHECK_IN';
 export function updateCheckIn(id: string, status: boolean | string) {
   return {
     id, status,

@@ -74,3 +74,30 @@ self.addEventListener('notificationclick', (event: NotificationEvent) => {
     return self.clients.openWindow('/dashboard/attendee');
   }));
 });
+
+self.addEventListener('message', (event) => {
+  console.log('Handle event: ', event);
+  const message = event.data;
+  switch (message.type) {
+    case 'notice':
+      const uri = 'https://fcm.googleapis.com/fcm/send';
+      fetch(uri, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `key=${process.env.FIREBASE_MESSAGE_SERVER_KEY}`
+        },
+        body: JSON.stringify(message.content),
+      })
+        .then(response => {
+          if (response.status === 200) {
+            return response.json();
+          } else {
+            throw new Error(response);
+          }
+        })
+        .then(json => {
+          console.log('Results: ', json.results)
+        })
+  }
+});

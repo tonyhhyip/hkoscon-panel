@@ -1,8 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import toastr from 'toastr';
 import AttendeeTable from '../components/AttendeeTable';
-import {updateCheckIn} from '../action';
+import {localCheckIn} from '../action';
 
 const getVisibleAttendee = (attendees = [], filter) => {
   if (filter === 'SHOW_ALL') {
@@ -26,6 +25,12 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = () => {};
+const mapDispatchToProps = (dispatch) => {
+  return {
+    handleLocalCheckIn: (id) => {
+      dispatch(localCheckIn(id));
+    }
+  }
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(AttendeeTable);

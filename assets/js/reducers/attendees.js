@@ -1,6 +1,6 @@
 //@flow
 import {
-  UPDATE_CHECK_IN,
+  LOCAL_CHECK_IN,
   NOTICE_CHECK_IN,
   IMPORT_ATTENDEE_DATA,
   IMPORT_ATTENDEE_CHECKIN,
@@ -14,7 +14,7 @@ const attendee = (state: Object = {}, action: Object) => {
       return Object.assign({}, state, {
         checkIn: action.checkIn && state.id in action.checkIn ? action.checkIn[state.id] : false
       });
-    case UPDATE_CHECK_IN:
+    case LOCAL_CHECK_IN:
     case NOTICE_CHECK_IN:
       if (state.id !== action.id) {
         return state;
@@ -42,7 +42,7 @@ const attendees = (state: Array<Object> = [], action: Object) => {
     case IMPORT_ATTENDEE_DATA:
       return [].concat(state, action.attendees);
     case IMPORT_ATTENDEE_CHECKIN:
-    case UPDATE_CHECK_IN:
+    case LOCAL_CHECK_IN:
     case NOTICE_CHECK_IN:
       return state.map(t => attendee(t, action));
     default:

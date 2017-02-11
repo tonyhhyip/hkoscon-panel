@@ -10,7 +10,8 @@ type Props = {
   id: string,
   type: string,
   ticket: string,
-  checkIn: boolean | string
+  checkIn: boolean | string,
+  handleLocalCheckIn: Function
 }
 
 type State = {
@@ -68,5 +69,21 @@ export default class Attendee extends React.Component {
     update[`checkIn/${date}/${id}`] = timestamp;
     database.ref().update(update)
       .catch(e => console.trace(e));
+    this.props.handleLocalCheckIn(id);
+    if (navigator.serviceWorker.controller) {
+      navigator.serviceWorker.controller.postMessage({
+        content: {
+          data: {
+            id: this.props.id,
+            name: this.props.name,
+            ticket: this.props.ticket,
+            type: this.props.type,
+            checkIn: timestamp,
+          },
+          to: '/topics/check-in'
+        },
+        type: 'notice'
+      });
+    }
   }
 }
