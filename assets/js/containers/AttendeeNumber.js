@@ -7,6 +7,6 @@ const mapStateToProps = (state) => {
   }
 };
 
-const mapDispatchToProps = () => {};
+const mapDispatchToProps = () => {return {}};
 
 export default connect(mapStateToProps, mapDispatchToProps)(AttendeeNumber);

@@ -2,7 +2,7 @@ import {connect} from 'react-redux';
 import {updateCheckIn} from '../action';
 import WebCam from '../components/WebCam';
 
-const mapStateToProps = () => {};
+const mapStateToProps = () => {return {}};
 
 const mapDispatchToProps = (dispatch) => {
   return {

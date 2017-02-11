@@ -25,8 +25,11 @@ export default function (props: Props) {
     });
   }
 
+  const others = Object.assign({}, props);
+  delete others.s, others.l, others.m, others.offset, others.className, others.children;
+
   return (
-    <div {...props} className={classNames(classes, props.className)}>
+    <div style={props.style} className={classNames(classes, props.className)}>
       {props.children}
     </div>
   );

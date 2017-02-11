@@ -101,8 +101,8 @@ class ModalForm extends React.Component {
                 </Row>
                 <Row>
                   <Col s={12} className="input-field">
-                    <select ref="type" value={this.props.type}>
-                      {TICKET_TYPES.map(type => <option value={type}>{type}</option>)}
+                    <select ref="type" defaultValue={this.props.type}>
+                      {TICKET_TYPES.map(type => <option key={type} value={type}>{type}</option>)}
                     </select>
                     <label>Ticket Type</label>
                   </Col>

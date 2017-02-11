@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import {showAll} from '../action';
 import ResetButton from '../components/ResetButton';
 
-const mapStateToProps = () => {};
+const mapStateToProps = () => {return {}};
 
 const mapDispatchToProp = (dispatch) => {
   return {

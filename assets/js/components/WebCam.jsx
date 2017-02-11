@@ -6,7 +6,8 @@ import Container from './Container';
 import extract from '../feature/barcode';
 
 type Props = {
-  handleCheckIn: (id: string, result: boolean) => void
+  handleCheckIn: (id: string, result: boolean) => void,
+  style?: Object
 }
 
 type State = {
@@ -28,7 +29,7 @@ export default class CheckIn extends React.Component {
   }
   render() {
     return (
-      <Container {...this.props}>
+      <Container style={this.props.style}>
         <video width={`${this.state.capture ? 500 : 0}px`} ref="video" />
         <canvas width="498px" height="375px" style={{display: 'none'}} ref="canvas" id="qr-canvas" />
         <Container>

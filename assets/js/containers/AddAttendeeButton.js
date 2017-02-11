@@ -3,7 +3,7 @@ import AddAttendeeButton from '../components/AddAttendeeButton';
 import {addAttendee} from '../action';
 import {database} from '../firebase';
 
-const mapStateToProps = () => {};
+const mapStateToProps = () => {return {}};
 
 const mapDispatchToProps = (dispatch) => {
   return {
