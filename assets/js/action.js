@@ -92,7 +92,7 @@ export function firebaseLogin(user: Object) {
 }
 
 export const USER_INFO = 'USER_INFO';
-export function userInfo(info) {
+export function userInfo(info: Object) {
   return {
     info,
     type: USER_INFO

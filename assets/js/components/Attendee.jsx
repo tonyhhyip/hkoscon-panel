@@ -48,7 +48,7 @@ export default class Attendee extends React.Component {
   }
 
   renderCheckInButton(checkIn: boolean) {
-    if (checkIn) {
+    if (checkIn && typeof this.props.checkIn === 'string') {
       return (
         <span>{moment(this.props.checkIn).format('HH:mm:ss')}</span>
       )
