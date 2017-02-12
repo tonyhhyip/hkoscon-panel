@@ -27,8 +27,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    handleLocalCheckIn: (id) => {
-      dispatch(localCheckIn(id));
+    handleLocalCheckIn: (id, status) => {
+      dispatch(localCheckIn(id, status));
     }
   }
 };

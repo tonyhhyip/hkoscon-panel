@@ -66,7 +66,7 @@ export default class Attendee extends React.Component {
     update[`checkIn/${date}/${id}`] = timestamp;
     database.ref().update(update)
       .catch(e => console.trace(e));
-    this.props.handleLocalCheckIn(id);
+    this.props.handleLocalCheckIn(id, timestamp);
     if (navigator.serviceWorker.controller) {
       navigator.serviceWorker.controller.postMessage({
         content: {

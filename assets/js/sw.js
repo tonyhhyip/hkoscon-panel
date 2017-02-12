@@ -62,7 +62,7 @@ self.addEventListener('fetch', (event: FetchEvent) => {
 messaging.setBackgroundMessageHandler(payload => {
   console.log(payload);
   const {data} = payload;
-  const title = `${data.type} ${data.name} Check In`;
+  const title = `${data.type} ${data.name} Check In On ${data.checkIn}`;
   return self.registration.showNotification(title, {
     icon: 'https://hkoscon.org/logo.png'
   });
@@ -83,7 +83,6 @@ self.addEventListener('notificationclick', (event: NotificationEvent) => {
 });
 
 self.addEventListener('message', (event) => {
-  console.log('Handle event: ', event);
   const message = event.data;
   switch (message.type) {
     case 'notice':

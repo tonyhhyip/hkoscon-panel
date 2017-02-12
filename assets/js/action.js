@@ -25,10 +25,18 @@ export function filterName(filter: string) {
 }
 
 export const LOCAL_CHECK_IN = 'LOCAL_CHECK_IN';
-export function localCheckIn(id: string) {
+export function localCheckIn(id: string, status: string) {
   return {
-    id,
+    id, status,
     type: LOCAL_CHECK_IN
+  }
+}
+
+export const SYNC_CHECK_IN = 'SYNC_CHECK_IN';
+export function syncCheckIn(id: string, status: string) {
+  return {
+    id, status,
+    type: SYNC_CHECK_IN
   }
 }
 

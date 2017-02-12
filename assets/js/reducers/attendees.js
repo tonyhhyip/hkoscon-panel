@@ -1,5 +1,6 @@
 //@flow
 import {
+  SYNC_CHECK_IN,
   LOCAL_CHECK_IN,
   NOTICE_CHECK_IN,
   IMPORT_ATTENDEE_DATA,
@@ -14,8 +15,8 @@ const attendee = (state: Object = {}, action: Object) => {
       return Object.assign({}, state, {
         checkIn: action.checkIn && state.id in action.checkIn ? action.checkIn[state.id] : false
       });
+    case SYNC_CHECK_IN:
     case LOCAL_CHECK_IN:
-    case NOTICE_CHECK_IN:
       if (state.id !== action.id) {
         return state;
       }
@@ -30,6 +31,7 @@ const attendee = (state: Object = {}, action: Object) => {
       return Object.assign({}, action.attendee, {
         checkIn: state.checkIn
       });
+
     default:
       return state;
   }
