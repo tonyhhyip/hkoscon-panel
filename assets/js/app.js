@@ -14,8 +14,10 @@ auth(store).then(() => {
   runtime.register({
     scope: `https://${location.host}/`
   })
-    .catch(e => console.trace(e));
-  fetchData(store);
-  ReactDOM.render(<AppRouter data={store}/>, document.getElementById('react-root'));
-  notice(store);
+    .catch(e => console.trace(e))
+    .then(() => {
+      fetchData(store);
+      ReactDOM.render(<AppRouter data={store}/>, document.getElementById('react-root'));
+      notice(store);
+    });
 });
