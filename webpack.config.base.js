@@ -20,7 +20,7 @@ module.exports = {
         '**/*.map',
         '*.html'
       ],
-      publicPath: '/assets/'
+      publicPath: '/'
     })
   ],
   externals: {
@@ -31,9 +31,9 @@ module.exports = {
     app: './assets/js/app'
   },
   output: {
-    path: `${__dirname}/public/assets`,
+    path: `${__dirname}/public`,
     filename: '[name].js',
-    publicPath: '/assets/'
+    publicPath: '/'
   },
   resolve: {
     extensions: ['.js', '.jsx']

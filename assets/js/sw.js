@@ -1,5 +1,12 @@
 //@flow
-import {messaging} from './firebase';
+import firebase from 'firebase/app';
+import 'firebase/messaging';
+
+firebase.initializeApp({
+  messagingSenderId: process.env.FIREBASE_MESSAGE_SENDER_ID
+});
+
+const messaging = firebase.messaging();
 
 const {assets} = global.serviceWorkerOption;
 const files = [
