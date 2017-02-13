@@ -1,5 +1,8 @@
+//@flow
+import type {Store} from 'redux';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import $ from 'jquery';
 import toastr from 'toastr';
 import Container from '../components/Container';
 import Row from '../components/Row';
@@ -7,8 +10,19 @@ import Col from '../components/Col';
 import {TEAMS, DEFAULT_INFO} from '../constants';
 import {database, auth} from '../firebase';
 
+type State = {
+  team: string
+}
+
+type Context = {
+  store: Store<Object, Object>
+}
+
 export default class Setting extends React.Component {
-  constructor(props, context) {
+  state: State;
+  context: Context;
+
+  constructor(props: Object, context: Context) {
     super(props, context);
     this.state = DEFAULT_INFO;
     if (auth.currentUser) {
@@ -21,7 +35,7 @@ export default class Setting extends React.Component {
     }
   }
 
-  updateState(user) {
+  updateState(user: Object) {
     database.ref(`/users/${user.uid}`).on('value', (snapshot) => {
       this.setState(snapshot.val());
     });
@@ -56,7 +70,7 @@ export default class Setting extends React.Component {
     );
   }
 
-  handleChange(key, value) {
+  handleChange(key: string, value: string) {
     this.setState({[key]: value})
   }
 

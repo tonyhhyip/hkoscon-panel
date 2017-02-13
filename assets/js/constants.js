@@ -1,3 +1,4 @@
+//@flow
 'use strict';
 
 export const TICKET_TYPES = [

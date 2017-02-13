@@ -1,3 +1,4 @@
+//@flow
 import { createStore } from 'redux'
 import app from './reducers';
 import middlewares from './middlewares';

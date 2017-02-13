@@ -1,3 +1,4 @@
+//@flow
 import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
@@ -6,8 +7,14 @@ import Row from '../components/Row';
 import Col from '../components/Col';
 import sendNotice from '../feature/notice';
 
+type State = {
+  message: string,
+  target: string
+}
+
 export default class Broadcast extends React.Component {
-  constructor(props) {
+  state: State;
+  constructor(props: Object) {
     super(props);
     this.state = {
       message: '',
@@ -59,11 +66,11 @@ export default class Broadcast extends React.Component {
     );
   }
 
-  handleChange(e) {
+  handleChange(e: Object) {
     this.setState({message: e.target.value});
   }
 
-  handleBroadcast(e) {
+  handleBroadcast(e: Event) {
     e.preventDefault();
     sendNotice({
       data: {

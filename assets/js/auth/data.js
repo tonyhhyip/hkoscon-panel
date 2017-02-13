@@ -1,8 +1,10 @@
+//@flow
+import type {Store} from 'redux';
 import {database} from '../firebase';
 import {userInfo} from '../action';
 import {DEFAULT_INFO} from '../constants';
 
-export default function (store, user) {
+export default function (store: Store<Object, Object>, user: Object) {
   const key = `/users/${user.uid}`;
   database.ref(key).on('value', (snapshot) => {
     let value = snapshot.val();

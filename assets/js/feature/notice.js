@@ -1,6 +1,12 @@
+//@flow
 'use strict';
 
-export default function sendNotice(content) {
+type Notice = {
+  data: Object,
+  to: string
+}
+
+export default function sendNotice(content: Notice) {
   const message = {
     content,
     type: 'notice'

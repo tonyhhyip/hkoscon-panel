@@ -1,8 +1,10 @@
+//@flow
+import type {Store} from 'redux';
 import moment from 'moment';
 import {database} from '../../firebase';
 import {importAttendeeCheckin, updateCheckIn, syncCheckIn} from '../../action';
 
-export default function (store) {
+export default function (store: Store<Object, Object>) {
   const date = moment().format('YYYYMMDD');
   const ref = database.ref(`checkIn/${date}`);
 

@@ -1,3 +1,4 @@
+//@flow
 import {IMPORT_TIMETABLE} from '../action';
 
 export default function (state: Object = {}, action: Object) {
