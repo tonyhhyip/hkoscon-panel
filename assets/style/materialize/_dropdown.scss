@@ -8,7 +8,7 @@
   overflow-y: auto;
   opacity: 0;
   position: absolute;
-  index: 999;
+  z-index: 999;
   will-change: width, height;
 
   li {
