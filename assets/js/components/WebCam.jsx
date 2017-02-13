@@ -1,13 +1,16 @@
 //@flow
 import React from 'react';
 import QrCode from 'qrcode-reader';
-import toastr from 'toastr';
+import moment from 'moment';
+import {database} from '../firebase';
+import sendNotice from '../feature/notice'
 import Container from './Container';
 import extract from '../feature/barcode';
 
 type Props = {
-  handleCheckIn: (id: string, result: boolean) => void,
-  style?: Object
+  handleLocalCheckIn: (id: string, result: boolean) => void,
+  style?: Object,
+  attendees: Array<Object>
 }
 
 type State = {
@@ -88,6 +91,7 @@ export default class CheckIn extends React.Component {
       .catch(e => console.trace(e));
 
     qrcode.callback = function (result) {
+      console.info(result);
       if (result)
         self.handleTicketScan(result);
     };
@@ -96,19 +100,28 @@ export default class CheckIn extends React.Component {
   }
 
   handleTicketScan(result: string) {
-    const self = this;
     const {attendee} = extract(result);
-    fetch(`/api/checkin/${attendee}`, {method: 'POST'})
-      .then((response) => {
-        if (response.status === 200) {
-          toastr.success('Success Check In');
-          self.props.handleCheckIn(attendee, true);
-        } else {
-          toastr.error('Fail to check in');
-          self.props.handleCheckIn(attendee, false);
-        }
-      });
+    const now = moment();
+    const date = now.format('YYYYMMDD');
+    const timestamp = now.format();
+    const update = {};
+    update[`checkIn/${date}/${attendee}`] = timestamp;
+    database.ref().update(update)
+      .catch(e => console.trace(e));
+    this.props.handleLocalCheckIn(attendee, timestamp);
+    const detail = this.props.attendees.filter(a => a.id === attendee)[0];
+    sendNotice({
+      data: {
+        id: detail.id,
+        name: detail.name,
+        ticket: detail.ticket,
+        type: detail.type,
+        checkIn: timestamp,
+      },
+      to: '/topics/check-in'
+    })
   }
+
 
   stopCapture() {
     if (this.state.stream) {

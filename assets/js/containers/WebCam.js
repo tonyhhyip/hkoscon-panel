@@ -1,12 +1,18 @@
 import {connect} from 'react-redux';
-import {updateCheckIn} from '../action';
+import {localCheckIn} from '../action';
 import WebCam from '../components/WebCam';
 
-const mapStateToProps = () => {return {}};
+const mapStateToProps = (state) => {
+  return {
+    attendees: state.attendees
+  }
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    handleCheckIn: (id: string, result: boolean) => dispatch(updateCheckIn(id, result))
+    handleLocalCheckIn: (id, status) => {
+      dispatch(localCheckIn(id, status));
+    }
   }
 };
 
