@@ -28,7 +28,7 @@ export default class Broadcast extends React.Component {
             <Row>
               <Col s={12} className="input-field">
                 <select defaultValue="broadcast-operation" id="broadcast-target" ref="target">
-                  <option value="broadcast-operation" selected>Operation</option>
+                  <option value="broadcast-operation">Operation</option>
                   <option value="broadcast-marketing">Marketing</option>
                   <option value="broadcast-all">All Staff</option>
                   <option value="attendee" disabled>Attendee</option>

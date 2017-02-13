@@ -1,6 +1,5 @@
 import {connect} from 'react-redux';
 import AddAttendeeButton from '../components/AddAttendeeButton';
-import {addAttendee} from '../action';
 import {database} from '../firebase';
 
 const mapStateToProps = () => {return {}};
@@ -15,7 +14,6 @@ const mapDispatchToProps = (dispatch) => {
         ticket: attendee.ticket,
         type: attendee.type,
       });
-      dispatch(addAttendee(attendee));
     }
   }
 };

@@ -2,7 +2,7 @@
 import type {Store} from 'redux';
 import toastr from 'toastr';
 import {messaging} from '../firebase';
-import subscribe from './subscribe';
+import subscribe from '../feature/subscribe';
 import listen from './listen';
 
 export default function (store: Store<Object, Object>) {
@@ -10,7 +10,8 @@ export default function (store: Store<Object, Object>) {
     .then(() => navigator.serviceWorker.getRegistration())
     .then(registration => messaging.useServiceWorker(registration))
     .then(() => messaging.getToken())
-    .then(subscribe)
+    .then(token => subscribe(token, 'check-in'))
+    .then(() => console.log('Start subscribe'))
     .then(listen(store, messaging))
     .then(() => toastr.success('Start listen for Push Notice'))
     .catch((e) => {

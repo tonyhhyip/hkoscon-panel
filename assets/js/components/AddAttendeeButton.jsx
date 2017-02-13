@@ -70,10 +70,7 @@ function Button() {
 
 class ModalForm extends React.Component {
   render() {
-    const handleChange = key => event => {
-      debugger;
-      this.props.handleChange(key, event.target.value)
-    };
+    const handleChange = key => event => this.props.handleChange(key, event.target.value);
     return (
       <div id="add-attendee-modal" className="modal modal-fixed-footer">
         <form onSubmit={e => e.preventDefault()}>

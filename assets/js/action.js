@@ -57,7 +57,7 @@ export function noticeCheckIn(data: Object) {
 }
 
 export const IMPORT_ATTENDEE_DATA = 'IMPORT_ATTENDEE_DATE';
-export function importAttendeeData(attendees: Array<Object>) {
+export function importAttendeeData(attendees: Array<Object> | Object) {
   return {
     attendees,
     type: IMPORT_ATTENDEE_DATA
@@ -69,22 +69,6 @@ export function importAttendeeCheckin(checkIn: Object) {
   return {
     checkIn,
     type: IMPORT_ATTENDEE_CHECKIN
-  }
-}
-
-export const ADD_ATTENDEE = 'ADD_ATTENDEE';
-export function addAttendee(attendee: Object) {
-  return {
-    attendee,
-    type: ADD_ATTENDEE,
-  }
-}
-
-export const UPDATE_ATTENDEE = 'UPDATE_ATTENDEE';
-export function updateAttendee(index: number, attendee: Object) {
-  return {
-    index, attendee,
-    type: UPDATE_ATTENDEE
   }
 }
 

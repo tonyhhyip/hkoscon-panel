@@ -42,7 +42,7 @@ const attendees = (state: Array<Object> = [], action: Object) => {
     case ADD_ATTENDEE:
       return [].concat(state, attendee({}, action));
     case IMPORT_ATTENDEE_DATA:
-      return [].concat(state, action.attendees);
+      return [].concat(Array.isArray(action.attendees) ? action.attendees: Object.values(action.attendees));
     case IMPORT_ATTENDEE_CHECKIN:
     case LOCAL_CHECK_IN:
     case NOTICE_CHECK_IN:
