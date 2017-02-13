@@ -8,7 +8,7 @@ import Container from './Container';
 import extract from '../feature/barcode';
 
 type Props = {
-  handleLocalCheckIn: (id: string, result: boolean) => void,
+  handleLocalCheckIn: (id: string, result: string) => void,
   style?: Object,
   attendees: Array<Object>
 }

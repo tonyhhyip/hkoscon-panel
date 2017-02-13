@@ -8,7 +8,8 @@ type Props = {
   l?: number,
   m?: number,
   s?: number,
-  offset?: string
+  offset?: string,
+  style?: Object
 }
 
 export default function Col(props: Props) {

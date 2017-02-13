@@ -12,7 +12,7 @@ type AttendeeData = {
 
 type Props = {
   attendees: Array<AttendeeData>,
-  checkIn: Function
+  handleLocalCheckIn: Function
 }
 
 export default function AttendeeTable(props: Props) {
