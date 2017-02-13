@@ -11,7 +11,7 @@ type Props = {
   offset?: string
 }
 
-export default function (props: Props) {
+export default function Col(props: Props) {
   let sizes = { s: props.s, m: props.m, l: props.l };
   let classes = { col: true };
   ['s', 'm', 'l'].forEach(size => {

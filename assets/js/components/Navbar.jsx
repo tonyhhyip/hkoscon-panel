@@ -36,7 +36,7 @@ function Bar(props) {
               <i className="left material-icons">{props.connect ? 'compare_arrows' : 'hourglass_empty'}</i>
             </li>
             <li><Link to="/dashboard/attendees">Attendee</Link></li>
-            <li><Link to="/dashboard/timetable">Timetable</Link></li>
+            <li><Link to="/dashboard/broadcast">Broadcast</Link></li>
             <li>
               <a className="dropdown-button" href="#" data-activates="navbar-dropdown" id="navbar-dropdown-button">
                 {props.user ? props.user.displayName : ''}

@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import type {Store} from 'redux';
 import { Redirect, IndexRedirect, browserHistory, Router, Route } from 'react-router';
 import Container from './Container';
+import Broadcast from './pages/Broadcast';
 import Dashboard from './pages/Dashboard';
 import Attendees from './pages/Attendees';
 import Timetable from './pages/Timetable';
@@ -19,6 +20,7 @@ export default function AppRouter(props: {data: Store<Object, Object>}) {
           <Route component={Attendees} path="/dashboard/attendees" />
           <Route component={Timetable} path="/dashboard/timetable" />
           <Route component={Setting} path="/dashboard/setting" />
+          <Route component={Broadcast} path="/dashboard/broadcast" />
           <Redirect to="/dashboard" from="*"/>
         </Route>
       </Router>

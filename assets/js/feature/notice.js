@@ -1,7 +1,5 @@
 'use strict';
 
 export default function sendNotice(content) {
-  return navigator.serviceWorker.getRegistration()
-    .then(registration => registration.active)
-    .then(client => client.postMessage({content, type: 'notice'}));
+  return navigator.serviceWorker.controller.postMessage({content, type: 'notice'});
 }

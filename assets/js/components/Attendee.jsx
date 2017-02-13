@@ -40,11 +40,6 @@ export default class Attendee extends React.Component {
     );
   }
 
-  shouldComponentUpdate(nextProps: Props) {
-    const checkIn = nextProps.checkIn !== this.props.checkIn && !!nextProps.checkIn;
-    return true;
-  }
-
   renderCheckInButton(checkIn: boolean) {
     if (checkIn && typeof this.props.checkIn === 'string') {
       return (
