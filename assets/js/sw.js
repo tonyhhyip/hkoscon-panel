@@ -1,5 +1,6 @@
 //@flow
 import firebase from 'firebase/app';
+import moment from 'moment';
 import 'firebase/messaging';
 
 firebase.initializeApp({
@@ -62,7 +63,7 @@ self.addEventListener('fetch', (event: FetchEvent) => {
 messaging.setBackgroundMessageHandler(payload => {
   console.log(payload);
   const {data} = payload;
-  const title = `${data.type} ${data.name} Check In On ${data.checkIn}`;
+  const title = `${data.type} ${data.name} Check In On ${moment(data.checkIn).format('HH:mm:ss')}`;
   return self.registration.showNotification(title, {
     icon: 'https://hkoscon.org/logo.png'
   });
