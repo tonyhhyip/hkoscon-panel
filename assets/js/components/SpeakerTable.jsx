@@ -40,7 +40,12 @@ function Speaker(props: SpeakerProps) {
     <tr>
       <td>{props.name}</td>
       <td><CheckIn {...props} handleClick={props.handleLocalCheckIn}/></td>
-      <td><button className="btn" onClick={() => props.openModal()}>Photo</button></td>
+      <td>
+        <button className="btn" onClick={() => props.openModal()}>
+          <i className="material-icons left">camera_alt</i>
+          Photo
+        </button>
+      </td>
     </tr>
   )
 }

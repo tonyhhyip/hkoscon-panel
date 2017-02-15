@@ -29,7 +29,12 @@ export default class CheckIn extends React.Component {
     if (this.props.checkIn && typeof this.props.checkIn === 'string') {
       return <span>{moment(this.props.checkIn).format('HH:mm:ss')}</span>;
     } else {
-      return <button className="btn" disabled={!this.state.checkIn} onClick={() => this.handleClick(this.props.id)}>Check in</button>;
+      return (
+        <button className="btn" disabled={!this.state.checkIn} onClick={() => this.handleClick(this.props.id)}>
+          <i className="material-icons left">done</i>
+          Check in
+        </button>
+      );
     }
   }
 

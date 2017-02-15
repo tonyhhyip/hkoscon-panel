@@ -86,13 +86,14 @@ export default class TakePhoto extends React.Component {
           </Col>
         </Row>
         <Row>
-          <Col s={12}>
-            <button className="btn-floating btn-large" onClick={() => this.removePhoto()}>
-              <i className="material-icons">delete</i>
-            </button>
-
+          <Col s={2}>
             <button className="btn-floating btn-large" onClick={() => this.uploadPhoto()} disabled={this.state.upload}>
-              <i className="material-icons">save</i>
+              <i className="material-icons">cloud_upload</i>
+            </button>
+          </Col>
+          <Col s={2}>
+            <button className="btn-floating btn-large" onClick={() => this.removePhoto()}>
+              <i className="material-icons">delete_forever</i>
             </button>
           </Col>
         </Row>
@@ -112,7 +113,7 @@ export default class TakePhoto extends React.Component {
         <Row>
           <Col s={12}>
             <button className="btn-floating btn-large" onClick={() => this.takePhoto()}>
-              <i className="material-icons">camera_alt</i>
+              <i className="material-icons">camera</i>
             </button>
           </Col>
         </Row>
