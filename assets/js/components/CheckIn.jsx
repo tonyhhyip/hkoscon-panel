@@ -1,11 +1,57 @@
 //@flow
 import React from 'react';
+import moment from 'moment';
+import {database} from '../firebase';
+import sendNotice from '../feature/notice';
 
 type Props = {
   handleClick: Function,
-  active: boolean
+  checkIn: boolean | string,
+  id: string
 }
 
-export default function CheckIn(props: Props) {
-  return <button type="button" className="btn" disabled={!props.active} onClick={props.handleClick}>Check in</button>;
+type State = {
+  checkIn: boolean
+}
+
+export default class CheckIn extends React.Component {
+  props: Props;
+  state: State;
+
+  constructor(props: Props) {
+    super(props);
+    this.state = {
+      checkIn: true
+    };
+  }
+
+  render() {
+    if (this.props.checkIn && typeof this.props.checkIn === 'string') {
+      return <span>{moment(this.props.checkIn).format('HH:mm:ss')}</span>;
+    } else {
+      return <button className="btn" disabled={!this.state.checkIn} onClick={() => this.handleClick(this.props.id)}>Check in</button>;
+    }
+  }
+
+  handleClick(id: string) {
+    this.setState({checkIn: false});
+    const now = moment();
+    const date = now.format('YYYYMMDD');
+    const timestamp = now.format();
+    const update = {};
+    update[`checkIn/${date}/${id}`] = timestamp;
+    database.ref().update(update)
+      .catch(e => console.trace(e));
+    this.props.handleClick(id, timestamp);
+    sendNotice({
+      data: {
+        id: this.props.id,
+        name: this.props.name,
+        ticket: this.props.ticket,
+        type: this.props.type,
+        checkIn: timestamp,
+      },
+      to: '/topics/check-in'
+    });
+  }
 }
