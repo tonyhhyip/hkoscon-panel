@@ -2,6 +2,7 @@
 import React from 'react';
 import QrCode from 'qrcode-reader';
 import moment from 'moment';
+import toastr from 'toastr';
 import {database} from '../firebase';
 import sendNotice from '../feature/notice'
 import Container from './Container';
@@ -91,7 +92,6 @@ export default class CheckIn extends React.Component {
       .catch(e => console.trace(e));
 
     qrcode.callback = function (result) {
-      console.info(result);
       if (result)
         self.handleTicketScan(result);
     };
@@ -101,6 +101,7 @@ export default class CheckIn extends React.Component {
 
   handleTicketScan(result: string) {
     const {attendee} = extract(result);
+    toastr.info(`Scan ticket: ${attendee}`);
     const now = moment();
     const date = now.format('YYYYMMDD');
     const timestamp = now.format();
