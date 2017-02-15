@@ -33,7 +33,7 @@ function Bar(props) {
           <Link to="/" >HKOSCon</Link>
           <ul className="right">
             <li>
-              <i className="left material-icons">{props.connect ? 'compare_arrows' : 'hourglass_empty'}</i>
+              <i className="left material-icons">{props.connect ? 'sync' : 'sync_problem'}</i>
             </li>
             <li><Link to="/dashboard/attendees">Attendee</Link></li>
             <li><Link to="/dashboard/speaker">Speaker</Link></li>

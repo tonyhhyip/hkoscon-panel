@@ -1,6 +1,7 @@
 //@flow
 import React from 'react';
 import Navbar from './containers/Navbar';
+import ActionButton from './components/ActionButton';
 
 type Props = {
   children: React.Element<*>,
@@ -17,6 +18,7 @@ export default function Container(props: Props) {
     <div>
       <header><Navbar/></header>
       <main>{children}</main>
+      <ActionButton/>
     </div>
   );
 };
