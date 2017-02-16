@@ -35,7 +35,9 @@ export default class AddAttendeeButton extends React.Component {
 
   componentDidMount() {
     $('select').material_select();
-    $('.modal').modal();
+    $('.modal').modal({
+      complete: () => this.handleReset()
+    });
   }
 
   handleChange(key, value) {
@@ -55,7 +57,7 @@ export default class AddAttendeeButton extends React.Component {
 
   handleSubmit() {
     this.props.handleAddAttendee(this.state.form);
-    $(document.getElementById('add-attendee-modal')).modal('close');
+    $(document.getElementById('attendee-modal')).modal('close');
   }
 
 }
