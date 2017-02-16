@@ -5,6 +5,9 @@ import {firebaseLogin} from '../action';
 import info from './data';
 
 export const provider = new firebase.auth.GithubAuthProvider();
+provider.setCustomParameters({
+  'allow_signup': 'false'
+});
 
 export default function (store: Store<Object, Object>) {
   return new Promise((resolve, reject) =>
