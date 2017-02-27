@@ -17,10 +17,12 @@ export default function checkInNotice(store: Store<Object, Object>) {
       navigator.serviceWorker.getRegistration()
         .then((registration) => {
           const {data} = action;
-          const title = `${data.type} attendee ${data.name} has checked in on ${moment(data.checkIn).format('HH:mm:ss')}`;
-          return registration.showNotification(title, {
-            icon: 'https://hkoscon.org/logo.png'
-          });
+          if (data.type !== 'Normal') {
+            const title = `${data.type} attendee ${data.name} has checked in on ${moment(data.checkIn).format('HH:mm:ss')}`;
+            return registration.showNotification(title, {
+              icon: 'https://hkoscon.org/logo.png'
+            });
+          }
         })
     }
     return result;

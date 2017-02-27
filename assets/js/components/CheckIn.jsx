@@ -7,7 +7,10 @@ import sendNotice from '../feature/notice';
 type Props = {
   handleClick: Function,
   checkIn: boolean | string,
-  id: string
+  id: string,
+  name: string,
+  ticket: string,
+  type: string
 }
 
 type State = {

@@ -63,10 +63,12 @@ self.addEventListener('fetch', (event: FetchEvent) => {
 messaging.setBackgroundMessageHandler(payload => {
   console.log(payload);
   const {data} = payload;
-  const title = `${data.type} ${data.name} Check In On ${moment(data.checkIn).format('HH:mm:ss')}`;
-  return self.registration.showNotification(title, {
-    icon: 'https://hkoscon.org/logo.png'
-  });
+  if (data.type !== 'Normal') {
+    const title = `${data.type} ${data.name} Check In On ${moment(data.checkIn).format('HH:mm:ss')}`;
+    return self.registration.showNotification(title, {
+      icon: 'https://hkoscon.org/logo.png'
+    });
+  }
 });
 
 self.addEventListener('notificationclick', (event: NotificationEvent) => {
