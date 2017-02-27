@@ -10,7 +10,8 @@ export const TICKET_TYPES = [
 
 export const TEAMS = [
   'Operation',
-  'Marketing'
+  'Marketing',
+  'Record',
 ];
 
 export const DEFAULT_INFO = {

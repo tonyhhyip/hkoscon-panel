@@ -6,6 +6,7 @@ import Container from '../components/Container';
 import Row from '../components/Row';
 import Col from '../components/Col';
 import sendNotice from '../feature/notice';
+import {TEAMS} from '../constants';
 
 type State = {
   message: string,
@@ -35,8 +36,7 @@ export default class Broadcast extends React.Component {
             <Row>
               <Col s={12} className="input-field">
                 <select defaultValue="broadcast-operation" id="broadcast-target" ref="target">
-                  <option value="broadcast-operation">Operation</option>
-                  <option value="broadcast-marketing">Marketing</option>
+                  {TEAMS.map(team => <option value={`boardcast-${team.toLowerCase()}`} key={team}>{team}</option>)}
                   <option value="broadcast-all">All Staff</option>
                   <option value="attendee" disabled>Attendee</option>
                 </select>

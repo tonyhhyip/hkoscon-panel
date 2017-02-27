@@ -57,8 +57,8 @@ export default class Setting extends React.Component {
             <Col s={12}>
               <Row>
                 <Col s={6} className="input-field">
-                  <select ref="team" value={this.state.team}>
-                    {TEAMS.map(team => <option value={team} selected={this.state.team === team}>{team}</option>)}
+                  <select ref="team" defaultValue={this.state.team}>
+                    {TEAMS.map(team => <option value={team} key={team}>{team}</option>)}
                   </select>
                   <label>Team</label>
                 </Col>
