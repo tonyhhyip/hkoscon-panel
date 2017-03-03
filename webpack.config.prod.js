@@ -7,7 +7,7 @@ const config = require('./webpack.config.base');
 
 module.exports = merge.smart({
   plugins: [
-    new UglifyPlugin({minimize: true}),
+    // new UglifyPlugin({minimize: true}),
     new DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('production'),
     }),
