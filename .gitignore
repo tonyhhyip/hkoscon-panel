@@ -5,3 +5,4 @@ node_modules
 .yarnclean
 webpack.json
 .firebaserc
+firebase-admin.json

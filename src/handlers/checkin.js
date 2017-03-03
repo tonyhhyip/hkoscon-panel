@@ -2,25 +2,16 @@
 
 const moment = require('moment');
 const debug = require('debug')('handle:checkin');
-const redis = require('../redis');
-const attendees = require('../attendees');
+const firebase = require('../firebase');
+
+const db = firebase.database();
 
 module.exports = function (req, res, id) {
-  const client = redis.createClient(redis.config);
-  const date = moment().format('YYYYMMDD');
-  if (id in attendees) {
-    res.status(200);
-    const {type, ticket, name} = attendees[id];
-    client.saddAsync(`attendee:${date}`, id)
-      .then(function () {
-        return client.hsetAsync(`checkin:${id}`, date, moment().unix());
-      })
-      .then(function () {
-        sendNotice({id, type, ticket, name});
-      });
-  } else {
-    res.status(404);
-  }
+  const now = moment();
+  const date = now.format('YYYYMMDD');
+  res.status(200);
+  db.ref(`checkin/${date}/${id}`).set(now.format());
+  // sendNotice();
   res.end();
 };
 
