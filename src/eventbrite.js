@@ -13,7 +13,12 @@ router.post('/check-in', function (req, res) {
   while (!id) {
     id = pieces.pop();
   }
-  checkIn(req, res, id);
+  if (req.body.config.action !== 'test') {
+    checkIn(req, res, id);
+  } else {
+    res.status(200);
+    res.end();
+  }
 });
 
 module.exports = router;
