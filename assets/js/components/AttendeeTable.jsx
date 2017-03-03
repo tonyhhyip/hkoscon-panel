@@ -30,7 +30,7 @@ export default function AttendeeTable(props: Props) {
       <tbody>
       {props.attendees && props.attendees.map((data: AttendeeData) => {
         return <Attendee
-          key={data.id} handleLocalCheckIn={props.handleLocalCheckIn}
+          key={data.id + data.ticket} handleLocalCheckIn={props.handleLocalCheckIn}
           name={data.name} id={data.id} type={data.type}
           checkIn={data.checkIn} ticket={data.ticket}
         />;
