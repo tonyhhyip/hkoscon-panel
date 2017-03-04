@@ -12,14 +12,12 @@ apps:
       NODE_ENV: production
 
   - script: bin/production.js
-      name: hkoscon-production
-      interpreter_args: "--harmony"
-      watch:
-        - src
-        - bin
-      env_production:
-        NODE_ENV: production
-      watch: false
+    name: hkoscon-production
+    interpreter_args: "--harmony"
+    env_production:
+      NODE_ENV: production
+      DEBUG: "*"
+    watch: false
 
   - script: node_modules/.bin/gulp
     name: gulp-build
