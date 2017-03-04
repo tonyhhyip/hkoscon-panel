@@ -11,11 +11,11 @@ const attendee = (state: Object = {}, action: Object) => {
   switch (action.type) {
     case IMPORT_ATTENDEE_CHECKIN:
       return Object.assign({}, state, {
-        checkIn: action.checkIn && state.id in action.checkIn ? action.checkIn[state.id] : false
+        checkIn: action.checkIn && (state.id in action.checkIn || state.ticket in action.checkIn) ? action.checkIn[state.id in action.checkIn ? state.id : state.ticket] : false
       });
     case SYNC_CHECK_IN:
     case LOCAL_CHECK_IN:
-      if (state.id !== action.id) {
+      if (state.id !== action.id && state.ticket !== action.id) {
         return state;
       }
       return Object.assign({}, state, {
