@@ -5,6 +5,7 @@
   "description": "App Server for HKOSCon check-in",
   "scripts": {
     "start": "node bin/app.js",
+    "compile": "babel src -d lib",
     "build": "gulp build",
     "dev": "gulp dev",
     "test": "flow check && yarn test:frontend && yarn test:backend",
