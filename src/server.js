@@ -3,7 +3,6 @@
 const express = require('express');
 const debug = require('debug')('server');
 const bodyParser = require('body-parser');
-const redis = require('./redis');
 const app = express();
 
 app.use(function (req, res, next) {
