@@ -6,10 +6,10 @@ import {noticeCheckIn} from '../action';
 export default function (store: Store<Object, Object>, messaging: firebase.Messaging) {
   return () => messaging.onMessage(payload => {
     const state = store.getState();
-    if (state.localCheckIn.indexOf(state.id) !== -1) {
+    if (state.localCheckIn.indexOf(payload.data.ticket) !== -1) {
       return console.log('Already Check In');
     } else {
-      return store.dispatch(noticeCheckIn(payload.data));
+      return store.dispatch(noticeCheckIn(payload));
     }
   });
 }

@@ -35,7 +35,8 @@ export function localCheckIn(id: string, status: string) {
 export const SYNC_CHECK_IN = 'SYNC_CHECK_IN';
 export function syncCheckIn(id: string, status: string) {
   return {
-    id, status,
+    id,
+    status,
     type: SYNC_CHECK_IN
   }
 }
@@ -43,16 +44,20 @@ export function syncCheckIn(id: string, status: string) {
 export const UPDATE_CHECK_IN = 'LOCAL_CHECK_IN';
 export function updateCheckIn(id: string, status: boolean | string) {
   return {
-    id, status,
+    id,
+    status,
     type: UPDATE_CHECK_IN
   }
 }
 
 export const NOTICE_CHECK_IN = 'NOTICE_CHECK_IN';
-export function noticeCheckIn(data: Object) {
+export function noticeCheckIn(payload: Object) {
+  const {data} = payload;
   return {
-    data, id: data.id,
-    type: NOTICE_CHECK_IN
+    data,
+    id: data.ticket,
+    type: NOTICE_CHECK_IN,
+    message: payload.notification.title,
   };
 }
 
@@ -69,17 +74,6 @@ export function importAttendeeCheckin(checkIn: Object) {
   return {
     checkIn,
     type: IMPORT_ATTENDEE_CHECKIN
-  }
-}
-
-export const IMPORT_TIMETABLE = 'IMPORT_TIMETABLE';
-export function importTimetable(module: string, data: any) {
-  if (module === 'schedule') {
-    toastr.success('Import Timetable');
-  }
-  return {
-    data, module,
-    type: IMPORT_TIMETABLE
   }
 }
 

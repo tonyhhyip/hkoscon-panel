@@ -4,7 +4,7 @@ import {database} from '../firebase';
 
 const mapStateToProps = () => {return {}};
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = () => {
   return {
     handleAddAttendee: (attendee) => {
       const ref = database.ref('attendees').push();

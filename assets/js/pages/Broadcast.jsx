@@ -5,7 +5,6 @@ import $ from 'jquery';
 import Container from '../components/Container';
 import Row from '../components/Row';
 import Col from '../components/Col';
-import sendNotice from '../feature/notice';
 import {TEAMS} from '../constants';
 
 type State = {
@@ -72,11 +71,5 @@ export default class Broadcast extends React.Component {
 
   handleBroadcast(e: Event) {
     e.preventDefault();
-    sendNotice({
-      data: {
-        message: this.state.message
-      },
-      to: '/topics/broadcast'
-    })
   }
 }

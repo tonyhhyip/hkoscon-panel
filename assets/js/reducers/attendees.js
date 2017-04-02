@@ -15,7 +15,7 @@ const attendee = (state: Object = {}, action: Object) => {
       });
     case SYNC_CHECK_IN:
     case LOCAL_CHECK_IN:
-      if (state.id !== action.id && state.ticket !== action.id) {
+      if (state.ticket !== action.id) {
         return state;
       }
       return Object.assign({}, state, {
@@ -34,6 +34,7 @@ const attendees = (state: Array<Object> = [], action: Object) => {
     case IMPORT_ATTENDEE_CHECKIN:
     case LOCAL_CHECK_IN:
     case NOTICE_CHECK_IN:
+    case SYNC_CHECK_IN:
       return state.map(t => attendee(t, action));
     default:
       return state;

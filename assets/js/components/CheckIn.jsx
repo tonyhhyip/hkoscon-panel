@@ -2,7 +2,6 @@
 import React from 'react';
 import moment from 'moment';
 import {database} from '../firebase';
-import sendNotice from '../feature/notice';
 
 type Props = {
   handleClick: Function,
@@ -33,7 +32,7 @@ export default class CheckIn extends React.Component {
       return <span>{moment(this.props.checkIn).format('HH:mm:ss')}</span>;
     } else {
       return (
-        <button className="btn" disabled={!this.state.checkIn} onClick={() => this.handleClick(this.props.id)}>
+        <button className="btn" disabled={!this.state.checkIn} onClick={() => this.handleClick(this.props.ticket)}>
           <i className="material-icons left">done</i>
           Check in
         </button>
@@ -51,15 +50,5 @@ export default class CheckIn extends React.Component {
     database.ref().update(update)
       .catch(e => console.trace(e));
     this.props.handleClick(id, timestamp);
-    sendNotice({
-      data: {
-        id: this.props.id,
-        name: this.props.name,
-        ticket: this.props.ticket,
-        type: this.props.type,
-        checkIn: timestamp,
-      },
-      to: '/topics/check-in'
-    });
   }
 }

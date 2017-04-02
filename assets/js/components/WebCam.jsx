@@ -4,7 +4,6 @@ import QrCode from 'qrcode-reader';
 import moment from 'moment';
 import toastr from 'toastr';
 import {database} from '../firebase';
-import sendNotice from '../feature/notice'
 import Container from './Container';
 import extract from '../feature/barcode';
 
@@ -100,27 +99,16 @@ export default class CheckIn extends React.Component {
   }
 
   handleTicketScan(result: string) {
-    const {attendee} = extract(result);
-    toastr.info(`Scan ticket: ${attendee}`);
+    const {ticket} = extract(result);
+    toastr.info(`Scan ticket: ${ticket}`);
     const now = moment();
     const date = now.format('YYYYMMDD');
     const timestamp = now.format();
     const update = {};
-    update[`checkIn/${date}/${attendee}`] = timestamp;
+    update[`checkIn/${date}/${ticket}`] = timestamp;
     database.ref().update(update)
       .catch(e => console.trace(e));
-    this.props.handleLocalCheckIn(attendee, timestamp);
-    const detail = this.props.attendees.filter(a => a.id === attendee)[0];
-    sendNotice({
-      data: {
-        id: detail.id,
-        name: detail.name,
-        ticket: detail.ticket,
-        type: detail.type,
-        checkIn: timestamp,
-      },
-      to: '/topics/check-in'
-    })
+    this.props.handleLocalCheckIn(ticket, timestamp);
   }
 
 
