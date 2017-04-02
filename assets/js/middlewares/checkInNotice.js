@@ -11,7 +11,7 @@ export default function checkInNotice(store: Store<Object, Object>) {
     const notYetCheckIn = attendees.some(attendee => attendee.ticket === action.data.ticket && !attendee.checkIn);
     const result = next(action);
     const state = store.getState();
-    if (notYetCheckIn && state.localCheckIn.indexOf(action.id) === -1) {
+    if (notYetCheckIn || state.localCheckIn.indexOf(action.id) === -1) {
       console.info('Check in notice');
       navigator.serviceWorker.getRegistration()
         .then((registration) => {
