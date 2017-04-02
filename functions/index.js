@@ -8,7 +8,7 @@ const moment = require('moment');
 
 admin.initializeApp(functions.config().firebase);
 
-exports.sendNotice = functions.database.ref('/checkin/{date}/{attendee}').onWrite(event => {
+exports.sendNotice = functions.database.ref('/checkIn/{date}/{attendee}').onWrite(event => {
   const time = moment(event.data.val());
   const attendee = event.params.attendee;
   const ref = admin.database().ref('/attendees');
