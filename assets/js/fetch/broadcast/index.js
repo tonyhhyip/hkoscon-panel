@@ -7,7 +7,7 @@ export default function (store: Store<Object, Object>) {
   const ref = database.ref('broadcast').orderByChild('time');
 
   ref.limitToFirst(30).once('value', (snapshot) => {
-    const action = importBroadcast(snapshot.val());
+    const action = importBroadcast(snapshot.val() || {});
     store.dispatch(action);
   });
 

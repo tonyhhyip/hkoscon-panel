@@ -61,7 +61,7 @@ export default class Broadcast extends React.Component {
             <Row>
               <Col s={12}>
                 <button className="btn-flat" onClick={e => this.handleBroadcast(e)}>Send</button>
-                <button className="btn-flat" type="reset">Reset</button>
+                <button className="btn-flat" type="reset" onClick={() => this.setState({ message: '' })}>Reset</button>
               </Col>
             </Row>
           </Col>
@@ -83,6 +83,6 @@ export default class Broadcast extends React.Component {
       message: this.state.message,
       target: this.state.target,
     })
-      .then(() => console.log('Saved'));
+      .then(() => this.setState({ message: '' }));
   }
 }
