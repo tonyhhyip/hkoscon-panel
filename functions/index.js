@@ -4,22 +4,25 @@ const url = require('url');
 const functions = require('firebase-functions');
 const admin = require('firebase-admin');
 
-const moment = require('moment');
+const moment = require('moment-timezone');
 
 admin.initializeApp(functions.config().firebase);
 
+const TIMEZONE = 'Asia/Hong_Kong';
+
 exports.sendNotice = functions.database.ref('/checkIn/{date}/{attendee}').onWrite(event => {
-  const time = moment(event.data.val());
+  const time = moment(event.data.val()).tz(TIMEZONE).format('HH:mm:ss');
   const attendee = event.params.attendee;
   const ref = admin.database().ref('/attendees');
   return new Promise((resolve, reject) => ref.once('value', snapshot => resolve(snapshot.val()), e => reject(e)))
-    .then(attendees => Object.keys(attendees).find(key => attendees[key].ticket === attendee))
+    .then(attendees => attendees[Object.keys(attendees).find(key => attendees[key].ticket === attendee)])
     .then(data => {
       if (data) {
         return {
-          data,
-          time,
-          message: `${data.type} attendee ${data.name} has checked in on ${time}.format('HH:mm:ss')}`,
+          data: Object.assign({}, data, { checkIn: time }),
+          notification: {
+            title: `${data.type} attendee ${data.name} has checked in on ${time}`,
+          },
         };
       } else {
         throw new Error('Attendee data not found');
@@ -27,7 +30,7 @@ exports.sendNotice = functions.database.ref('/checkIn/{date}/{attendee}').onWrit
     })
     .then(message => admin.messaging().sendToTopic('check-in', message))
     .then(response => console.log('Success send notice', response))
-    .catch(e => console.error(e.message));
+    .catch(e => console.error(e));
 });
 
 exports.eventbriteWebhookCheckIn = functions.https.onRequest((req, res) => {
@@ -48,7 +51,7 @@ exports.eventbriteWebhookCheckIn = functions.https.onRequest((req, res) => {
     console.error('Incorrect event: ', req.get('X-Eventbrite-Event'));
     res.status(400).end();
   } else {
-    const now = moment();
+    const now = moment().tz(TIMEZONE);
     const date = now.format('YYYYMMDD');
     return admin.database().ref(`/checkin/${date}/${id}`)
       .set(now.format())
