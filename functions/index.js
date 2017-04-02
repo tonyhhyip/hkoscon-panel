@@ -13,7 +13,7 @@ exports.sendNotice = functions.database.ref('/checkIn/{date}/{attendee}').onWrit
   const attendee = event.params.attendee;
   const ref = admin.database().ref('/attendees');
   return new Promise((resolve, reject) => ref.once('value', snapshot => resolve(snapshot.val()), e => reject(e)))
-    .then(attendees => Object.values(attendees).find(obj => obj.ticket === attendee))
+    .then(attendees => Object.keys(attendees).find(key => attendees[key].ticket === attendee))
     .then(data => {
       if (data) {
         return {
