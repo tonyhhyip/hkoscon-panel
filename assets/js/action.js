@@ -92,3 +92,19 @@ export function userInfo(info: Object) {
     type: USER_INFO
   }
 }
+
+export const IMPORT_BROADCAST = 'IMPORT_BROADCAST';
+export function importBroadcast(messages: Object) {
+  return {
+    messages: Object.values(messages).reverse(),
+    type: IMPORT_BROADCAST,
+  }
+}
+
+export const ADD_BROADCAST = 'ADD_BROADCAST';
+export function addBroadcast(message: Object) {
+  return {
+    message,
+    type: ADD_BROADCAST,
+  }
+}
