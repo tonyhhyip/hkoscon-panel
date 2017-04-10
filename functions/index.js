@@ -4,6 +4,7 @@ const url = require('url');
 const functions = require('firebase-functions');
 const admin = require('firebase-admin');
 
+const request = require('request-promise');
 const moment = require('moment-timezone');
 
 admin.initializeApp(functions.config().firebase);
@@ -56,6 +57,39 @@ exports.eventbriteWebhookCheckIn = functions.https.onRequest((req, res) => {
     return admin.database().ref(`/checkin/${date}/${id}`)
       .set(now.format())
       .then(() => res.status(200).end());
+  }
+});
+
+exports.sendBroadcast = functions.database.ref('/broadcast/{key}').onWrite(event => {
+  const { body, title, target } = event.data.val();
+  const notification = {
+    title,
+    body,
+  };
+
+  if (target === 'attendee') {
+    // Send with RESTful API for website
+    return request({
+      url: 'https://fcm.googleapis.com/fcm/send',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `key=${functions.config().messaging.key}`,
+      },
+      body: {
+        notification,
+        to: '/topics/broadcast',
+      },
+      json: true,
+    })
+      .then(body => {
+        if ('message_id' in body) {
+          console.log('Message ID: ', body.message_id);
+        } else {
+          console.error(body.error);
+        }
+      });
+  } else {
+    return admin.messaging().sendToTopic(target, { notification });
   }
 });
 

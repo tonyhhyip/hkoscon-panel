@@ -11,17 +11,23 @@ export default class BroadcastTable extends React.Component {
           {this.props.broadcast.map(broadcast => (
             <li key={broadcast.target + broadcast.user + broadcast.time}>
               <div className="collapsible-header">
-              <span className="title">
-                {broadcast.user}
-                &rarr;
-                {broadcast.target.replace('broadcast-', '')}
-              </span>
+                <span className="title">
+                  {broadcast.title}
+                  &nbsp;
+                </span>
                 <small>
-                  @{moment(broadcast.time).tz('Asia/Hong_Kong').format('D/M/YYYY HH:mm:ss')}
+                  {broadcast.user}
+                  &nbsp;
+                  &rarr;
+                  &nbsp;
+                  {broadcast.target.replace('broadcast-', '')}
+                  &nbsp;
+                  @
+                  {moment(broadcast.time).tz('Asia/Hong_Kong').format('D/M/YYYY HH:mm:ss')}
                 </small>
               </div>
               <div className="collapsible-body">
-                <p>{broadcast.message}</p>
+                <p>{broadcast.body}</p>
               </div>
             </li>
           ))}
