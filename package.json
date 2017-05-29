@@ -39,7 +39,7 @@
     "babel-loader": "^7.0.0",
     "babel-preset-modern-browsers": "^9.0.2",
     "babel-preset-react": "^6.16.0",
-    "flow-bin": "^0.46.0",
+    "flow-bin": "^0.47.0",
     "gulp": "^3.9.1",
     "gulp-clean-css": "^3.0.0",
     "gulp-htmlmin": "^3.0.0",
