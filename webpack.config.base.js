@@ -47,9 +47,9 @@ module.exports = {
           babelrc: false,
           presets: [
             'react',
-            'modern-browsers'
+            'modern-browsers',
+            'flow'
           ],
-          plugins: ['transform-flow-strip-types']
         }
       }
     ]
