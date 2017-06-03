@@ -10,6 +10,7 @@ import Attendees from './pages/Attendees';
 import Timetable from './pages/Timetable';
 import Setting from './pages/Setting';
 import Speaker from './pages/Speaker';
+import Ticket from './pages/Ticket';
 
 export default function AppRouter(props: {data: Store<Object, Object>}) {
   return (
@@ -22,7 +23,8 @@ export default function AppRouter(props: {data: Store<Object, Object>}) {
           <Route component={Timetable} path="/dashboard/timetable" />
           <Route component={Setting} path="/dashboard/setting" />
           <Route component={Broadcast} path="/dashboard/broadcast" />
-          <Route component={Speaker} path="/dashboard/speaker"/>
+          <Route component={Speaker} path="/dashboard/speaker" />
+          <Route component={Ticket} path="/dashboard/ticket" />
           <Redirect to="/dashboard" from="*"/>
         </Route>
       </Router>
