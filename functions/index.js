@@ -60,36 +60,53 @@ exports.eventbriteWebhookCheckIn = functions.https.onRequest((req, res) => {
   }
 });
 
-exports.sendBroadcast = functions.database.ref('/broadcast/{key}').onWrite(event => {
-  const { body, title, target } = event.data.val();
-  const notification = {
-    title,
-    body,
-  };
-
-  if (target === 'attendee') {
-    // Send with RESTful API for website
-    return request({
-      url: 'https://fcm.googleapis.com/fcm/send',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `key=${functions.config().messaging.key}`,
-      },
-      body: {
-        notification,
-        to: '/topics/broadcast',
-      },
-      json: true,
-    })
-      .then(body => {
-        if ('message_id' in body) {
-          console.log('Message ID: ', body.message_id);
-        } else {
-          console.error(body.error);
+function loadAttendee(attendees, uri, token, continuation) {
+  const ref = admin.database().ref('/attendees');
+  return request({
+    uri,
+    qs: continuation ? { token, continuation } : { token },
+  })
+    .then(body => JSON.parse(body))
+    .then((body) => {
+      body.attendees.forEach((attendee) => {
+        const exists = !!attendees.find(a => a.ticket === attendee.order_id);
+        if (!exists) {
+          const newRef = ref.push();
+          newRef.set({
+            id: attendee.id,
+            type: attendee.ticket_class_name,
+            ticket: attendee.order_id,
+            name: attendee.profile.name,
+          });
         }
       });
-  } else {
-    return admin.messaging().sendToTopic(target, { notification });
-  }
-});
+      if ('continuation' in body.pagination) {
+        return loadAttendee(attendees, uri, token, body.pagination.continuation);
+      }
+      return null;
+    })
+    .catch(console.error)
+}
 
+exports.syncAttendee = functions.https.onRequest((req, res) => {
+  if (req.method !== 'PUT' && req.get('X-Token') !== functions.config().access.attendee) {
+    res.status(401).end();
+    return;
+  }
+
+  const uri = `https://www.eventbriteapi.com/v3/events/${functions.config().event.id}/attendees`;
+  const token = functions.config().event.token;
+  return new Promise((resolve) => {
+    admin.database().ref(`/attendees`).on('value', snapshot => {
+      const val = snapshot.val();
+      const attendees = Object.keys(val).map(key => val[key]);
+      resolve(attendees);
+    });
+  })
+    .then(attendees => loadAttendee(attendees, uri, token, false))
+    .then(() => res.status(200).end())
+    .catch(e => {
+      res.status(500).json(e).end();
+      console.error(e)
+    });
+});
