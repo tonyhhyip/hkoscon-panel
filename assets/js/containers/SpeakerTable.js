@@ -4,7 +4,7 @@ import SpeakerTable from '../components/SpeakerTable';
 
 const mapStateToProps = (state, ownProps) => {
   return Object.assign({}, ownProps, {
-    speakers: state.attendees.filter(attendee => attendee.type === 'Speaker')
+    speakers: state.attendees.filter(attendee => attendee.type === 'VIP Ticket')
   });
 };
 

@@ -38,7 +38,6 @@ function Bar(props) {
             <li><Link to="/dashboard/ticket">Ticket</Link></li>
             <li><Link to="/dashboard/attendees">Attendee</Link></li>
             <li><Link to="/dashboard/speaker">Speaker</Link></li>
-            <li><Link to="/dashboard/broadcast">Broadcast</Link></li>
             <li>
               <a className="dropdown-button" href="#" data-activates="navbar-dropdown" id="navbar-dropdown-button">
                 {props.user ? props.user.displayName : ''}

@@ -17,9 +17,15 @@ export default class TicketType extends React.Component {
   context: Context;
   render() {
     const values = {
-      normal: 'Normal',
-      speaker: 'Speaker',
-      staff: 'Staff'
+      early: 'Early Bird Ticket',
+	    staff: 'Staff Ticket',
+      vip: 'VIP Ticket',
+      full: 'Full Ticket',
+	    weekend: 'Weekend (Sat-only) Ticket',
+      sponsorFree: 'Sponsor Ticket - Free (No Tee)',
+      community: 'Community Ticket',
+      sponsorRegular: 'Sponsor Ticket - Regular',
+      student: 'Student Ticket'
     };
     const name = typeof this.props.value === 'string' ? values[this.props.value.toLowerCase()] || 'Ticket Type' : 'Ticket Type';
     return (
