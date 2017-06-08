@@ -11,13 +11,6 @@ const messaging = firebase.messaging();
 const {assets} = global.serviceWorkerOption;
 const files = [
   '/assets/app.css',
-  '/data/attendee.json',
-  '/data/languages.yaml',
-  '/data/schedule.yaml',
-  '/data/speakers.yaml',
-  '/data/tags.yaml',
-  '/data/topics.yaml',
-  '/data/venues.yaml',
   ...assets
 ];
 

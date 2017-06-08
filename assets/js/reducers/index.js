@@ -4,6 +4,7 @@ import visibilityFilter from './visibilityFilter';
 import localCheckIn from './localCheckIn';
 import broadcast from './broadcast';
 import user from './user';
+import tshirt from './tshirt';
 
 export default combineReducers({
   attendees,
@@ -11,4 +12,5 @@ export default combineReducers({
   visibilityFilter,
   localCheckIn,
   user,
+  tshirt,
 });
